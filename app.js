@@ -22,13 +22,14 @@
    ============================================================ */
 
 /* ---------- vCard / QR modal ---------- */
+const VCARD_DATA = "BEGIN:VCARD\nVERSION:3.0\nFN:Dr. Pushpinder Singh\nN:Singh;Pushpinder;Dr.;;\nORG:Healing Minds\nTITLE:MBBS | Clinical Psychologist | Sex Therapist\nTEL;TYPE=CELL:+918700056840\nEMAIL:pushpinder.singh873@gmail.com\nADR;TYPE=WORK:;;H.No. 10552, St. No. 5, Malout Road;Sri Muktsar Sahib;Punjab;152026;India\nEND:VCARD";
+
 function openVcard() {
   var modal = document.getElementById('vcard-modal');
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   if (!document.getElementById('vcardQR').hasChildNodes()) {
-    var vcardData = "BEGIN:VCARD\nVERSION:3.0\nFN:Dr. Pushpinder Singh\nN:Singh;Pushpinder;Dr.;;\nORG:Healing Minds\nTITLE:MBBS | Clinical Psychologist | Sex Therapist\nTEL;TYPE=CELL:+918700056840\nEMAIL:pushpinder.singh873@gmail.com\nADR;TYPE=WORK:;;H.No. 10552, St. No. 5, Malout Road;Sri Muktsar Sahib;Punjab;152026;India\nEND:VCARD";
-    new QRCode(document.getElementById('vcardQR'), { text: vcardData, width: 160, height: 160, colorDark: '#16302E', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+    new QRCode(document.getElementById('vcardQR'), { text: VCARD_DATA, width: 160, height: 160, colorDark: '#16302E', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
   }
 }
 function closeVcard() {
@@ -38,6 +39,18 @@ function closeVcard() {
 document.getElementById('vcard-modal').addEventListener('click', function (e) {
   if (e.target === this) closeVcard();
 });
+
+function downloadVcard() {
+  const blob = new Blob([VCARD_DATA], { type: 'text/vcard;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'Dr-Pushpinder-Singh.vcf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
 
 /* ---------- Appointment date: block past dates ---------- */
 const apptDateInput = document.getElementById('appt_date');
