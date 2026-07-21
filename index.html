@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Dr. Pushpinder Bedi – Clinical Psychologist & Sex Therapist | Healing Minds" />
-<title>Healing Minds | Dr. Pushpinder Bedi</title>
+<meta name="description" content="Dr. Pushpinder Singh – Clinical Psychologist & Sex Therapist | Healing Minds" />
+<title>Healing Minds | Dr. Pushpinder Singh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -214,11 +214,13 @@
   #contact { background: var(--cream); }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 44px; }
   .form-group { margin-bottom: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .form-group label { display: block; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; font-weight: 600; }
   .form-group input, .form-group textarea, .form-group select {
     width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 4px;
     font-family: var(--font-body); font-size: 0.88rem; background: var(--white); color: var(--ink);
   }
+  .form-group input[type="date"], .form-group input[type="time"] { color: var(--ink); }
   .form-group textarea { resize: vertical; min-height: 110px; }
   .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--teal2); }
   .btn-teal {
@@ -256,6 +258,7 @@
     .hero-photo-frame { width: 260px; height: 320px; margin: 0 auto; }
     section { padding: 64px 28px; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
     .card-grid, .trust-grid, .testimonial-grid { grid-template-columns: 1fr; }
     .issue-grid { grid-template-columns: 1fr; }
     .crisis-banner { padding: 18px 28px; }
@@ -292,8 +295,8 @@
 <section id="home">
   <div class="hero-text">
     <p class="hero-eyebrow">Trauma-Informed · Sex-Positive · Gender-Affirming</p>
-    <h1 class="hero-name">Dr. Pushpinder Bedi</h1>
-    <p class="hero-title">Clinical Psychologist &amp; Sex Therapist</p>
+    <h1 class="hero-name">Dr. Pushpinder Singh</h1>
+    <p class="hero-title">MBBS · Clinical Psychologist &amp; Sex Therapist</p>
     <p class="hero-body">Healing Minds is a therapy practice built for the questions people are often too afraid to ask elsewhere — about intimacy, identity, and everyday mental health. Whatever brings you here, this is a space to be understood without having to explain yourself first.</p>
     <div class="hero-cta">
       <a href="#contact" class="btn-primary">Book a Session</a>
@@ -307,7 +310,7 @@
   </div>
   <div class="hero-image-col">
     <div class="hero-photo-frame">
-      <img src="push_two.JPG" alt="Dr. Pushpinder Bedi, Clinical Psychologist at Healing Minds" style="object-position: center 20%;" />
+      <img src="push_two.JPG" alt="Dr. Pushpinder Singh, Clinical Psychologist at Healing Minds" style="object-position: center 20%;" />
     </div>
   </div>
 </section>
@@ -327,13 +330,13 @@
   </div>
   <div class="about-grid">
     <div class="fade-in">
-      <img src="push_one.JPG" alt="Dr. Pushpinder Bedi in consultation room" style="width:100%; border-radius:8px; margin-bottom:28px; box-shadow: 0 18px 40px rgba(22,48,46,0.12);" />
-      <p class="section-body">Dr. Pushpinder Bedi is a clinical psychologist and certified sex therapist with over a decade of experience supporting clients through intimacy concerns, gender exploration, and everyday mental health struggles. <em>[Dummy bio — replace with real background, training history, and personal note on why this work matters to Dr. Bedi.]</em></p>
+      <img src="push_one.JPG" alt="Dr. Pushpinder Singh in consultation room" style="width:100%; border-radius:8px; margin-bottom:28px; box-shadow: 0 18px 40px rgba(22,48,46,0.12);" />
+      <p class="section-body">Dr. Pushpinder Singh is a clinical psychologist and certified sex therapist with over a decade of experience supporting clients through intimacy concerns, gender exploration, and everyday mental health struggles. <em>[Dummy bio — replace with real background, training history, and personal note on why this work matters to Dr. Singh.]</em></p>
       <p class="quote-block">"My role isn't to hand you a definition of what's 'normal.' It's to help you build a life — and a sex life — that feels genuinely satisfying to you."</p>
     </div>
     <div class="fade-in">
       <ul class="credential-list">
-        <li>M.Phil. in Clinical Psychology — [University Name, dummy]</li>
+        <li>MBBS — [University Name, dummy]</li>
         <li>RCI Licensed Clinical Psychologist — [License No., dummy]</li>
         <li>Certified Sex Therapist — [Certifying Body, dummy]</li>
         <li>Trained in WPATH Standards of Care for gender-affirming practice</li>
@@ -466,7 +469,7 @@
     </div>
     <div class="trust-item fade-in">
       <h4>Cultural Humility</h4>
-      <p>As an allied clinician, Dr. Bedi is committed to ongoing consultation, education, and decentering assumptions — so the burden of "teaching" never falls on the client.</p>
+      <p>As an allied clinician, Dr. Singh is committed to ongoing consultation, education, and decentering assumptions — so the burden of "teaching" never falls on the client.</p>
     </div>
   </div>
 </section>
@@ -497,42 +500,77 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header fade-in">
-    <p class="section-eyebrow">Get in Touch</p>
-    <h2 class="section-title">Start with a first session</h2>
+    <p class="section-eyebrow">Book an Appointment</p>
+    <h2 class="section-title">Request your first session</h2>
     <div class="section-divider"></div>
+    <p class="section-body" style="margin-top:18px;">Fill in your details and preferred slot below — we'll confirm your appointment by phone or email within one business day.</p>
   </div>
 
   <div class="contact-grid">
     <!-- FORM -->
     <div class="fade-in">
-      <form id="contactForm" action="https://formsubmit.co/ajax/mayki.kiran@gmail.com" method="POST">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required />
+      <form id="contactForm" action="https://formsubmit.co/ajax/pushpinder.singh873@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Appointment Request — Healing Minds" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Contact Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" pattern="[0-9+\-\s]{7,15}" required />
+          </div>
         </div>
+
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
         </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="appt_date">Preferred Date</label>
+            <input type="date" id="appt_date" name="appointment_date" required />
+          </div>
+          <div class="form-group">
+            <label for="appt_time">Preferred Time</label>
+            <input type="time" id="appt_time" name="appointment_time" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reason">What brings you here?</label>
+            <select id="reason" name="reason">
+              <option>Sex Therapy &amp; Intimacy</option>
+              <option>Gender-Affirming Care</option>
+              <option>Holistic Mental Health</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mode">Session Mode</label>
+            <select id="mode" name="session_mode">
+              <option>In-Person</option>
+              <option>Telehealth (Video Call)</option>
+              <option>No Preference</option>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
-          <label for="reason">What brings you here?</label>
-          <select id="reason" name="reason">
-            <option>Sex Therapy &amp; Intimacy</option>
-            <option>Gender-Affirming Care</option>
-            <option>Holistic Mental Health</option>
-            <option>Not sure yet</option>
-          </select>
+          <label for="message">Anything you'd like us to know? (optional)</label>
+          <textarea id="message" name="message" placeholder="Share as much or as little as feels comfortable."></textarea>
         </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn-teal" id="submitBtn">Send Message</button>
+
+        <button type="submit" class="btn-teal" id="submitBtn">Request Appointment</button>
         <p id="formError" style="display:none; color:#B3413A; font-size:0.82rem; margin-top:14px;"></p>
       </form>
       <div id="formSuccess" style="display:none; background: var(--ink); padding: 30px; border-radius: 8px; margin-top: 10px;">
-        <p style="color: #fff; font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">Message sent.</p>
-        <p style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">We'll reach out soon.</p>
+        <p style="color: #fff; font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">Appointment request sent.</p>
+        <p style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">We'll confirm your slot by phone or email within one business day.</p>
       </div>
     </div>
 
@@ -544,21 +582,21 @@
           <div class="contact-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
           <div>
             <p class="contact-label">Address</p>
-            <p class="contact-value">4th Floor, Care Chambers, Green Park,<br>New Delhi – 110016 (dummy address)</p>
+            <p class="contact-value">H.No. 10552, St. No. 5, Malout Road,<br>Sri Muktsar Sahib – 152026, Punjab</p>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
           <div>
             <p class="contact-label">Phone</p>
-            <p class="contact-value"><a href="tel:+919876543210">+91 98765 43210 (dummy)</a></p>
+            <p class="contact-value"><a href="tel:+918700056840">+91 87000 56840</a></p>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
           <div>
             <p class="contact-label">Email</p>
-            <p class="contact-value"><a href="mailto:hello@healingminds-dr.com">hello@healingminds-dr.com (dummy)</a></p>
+            <p class="contact-value"><a href="mailto:pushpinder.singh873@gmail.com">pushpinder.singh873@gmail.com</a></p>
           </div>
         </div>
         <div class="contact-item">
@@ -586,19 +624,19 @@
     <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
       <div>
         <p style="font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); margin-bottom:3px;">Name</p>
-        <p style="font-size:0.92rem; color:var(--ink); font-weight:500;">Dr. Pushpinder Bedi, Clinical Psychologist</p>
+        <p style="font-size:0.92rem; color:var(--ink); font-weight:500;">Dr. Pushpinder Singh, Clinical Psychologist</p>
       </div>
       <div>
         <p style="font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); margin-bottom:3px;">Phone</p>
-        <p style="font-size:0.92rem; color:var(--ink);">+91-9876543210 (dummy)</p>
+        <p style="font-size:0.92rem; color:var(--ink);">+91 87000 56840</p>
       </div>
       <div>
         <p style="font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); margin-bottom:3px;">Email</p>
-        <p style="font-size:0.92rem; color:var(--ink);">hello@healingminds-dr.com (dummy)</p>
+        <p style="font-size:0.92rem; color:var(--ink);">pushpinder.singh873@gmail.com</p>
       </div>
       <div>
         <p style="font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); margin-bottom:3px;">Address</p>
-        <p style="font-size:0.92rem; color:var(--ink);">4th Floor, Care Chambers, Green Park, New Delhi – 110016 (dummy)</p>
+        <p style="font-size:0.92rem; color:var(--ink);">H.No. 10552, St. No. 5, Malout Road, Sri Muktsar Sahib – 152026, Punjab</p>
       </div>
     </div>
     <div style="margin-bottom:24px;">
@@ -612,7 +650,7 @@
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Healing Minds. All rights reserved.</p>
-  <span>Compassion. Care. Commitment. · Dr. Pushpinder Bedi · New Delhi</span>
+  <span>Compassion. Care. Commitment. · Dr. Pushpinder Singh · Sri Muktsar Sahib</span>
 </footer>
 
 <script src="app.js"></script>

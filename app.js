@@ -5,14 +5,14 @@
    ------------------------------------------------------------
    This form uses FormSubmit (formsubmit.co) — the same free
    service used on Vanshul's site — to deliver submissions
-   straight to mayki.kiran@gmail.com. No backend server needed,
+   straight to pushpinder.singh873@gmail.com. No backend server needed,
    no dashboard signup required.
 
    The form's action attribute in index.html already points to:
-     https://formsubmit.co/ajax/mayki.kiran@gmail.com
+     https://formsubmit.co/ajax/pushpinder.singh873@gmail.com
 
    One-time step: the very first submission triggers a
-   confirmation email to mayki.kiran@gmail.com — click the
+   confirmation email to pushpinder.singh873@gmail.com — click the
    "Activate Form" link in that email once, and every
    submission after that is delivered automatically.
 
@@ -27,7 +27,7 @@ function openVcard() {
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   if (!document.getElementById('vcardQR').hasChildNodes()) {
-    var vcardData = "BEGIN:VCARD\nVERSION:3.0\nFN:Dr. Pushpinder Bedi\nN:Bedi;Pushpinder;Dr.;;\nORG:Healing Minds\nTITLE:Clinical Psychologist | Sex Therapist\nTEL;TYPE=CELL:+919876543210\nEMAIL:hello@healingminds-dr.com\nADR;TYPE=WORK:;;4th Floor Care Chambers Green Park;New Delhi;;110016;India\nEND:VCARD";
+    var vcardData = "BEGIN:VCARD\nVERSION:3.0\nFN:Dr. Pushpinder Singh\nN:Singh;Pushpinder;Dr.;;\nORG:Healing Minds\nTITLE:MBBS | Clinical Psychologist | Sex Therapist\nTEL;TYPE=CELL:+918700056840\nEMAIL:pushpinder.singh873@gmail.com\nADR;TYPE=WORK:;;H.No. 10552, St. No. 5, Malout Road;Sri Muktsar Sahib;Punjab;152026;India\nEND:VCARD";
     new QRCode(document.getElementById('vcardQR'), { text: vcardData, width: 160, height: 160, colorDark: '#16302E', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
   }
 }
@@ -38,6 +38,12 @@ function closeVcard() {
 document.getElementById('vcard-modal').addEventListener('click', function (e) {
   if (e.target === this) closeVcard();
 });
+
+/* ---------- Appointment date: block past dates ---------- */
+const apptDateInput = document.getElementById('appt_date');
+if (apptDateInput) {
+  apptDateInput.min = new Date().toISOString().split('T')[0];
+}
 
 /* ---------- Contact form → FormSubmit ---------- */
 document.getElementById('contactForm').addEventListener('submit', function (e) {
