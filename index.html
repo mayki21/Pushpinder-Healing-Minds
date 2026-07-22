@@ -375,6 +375,29 @@
   .vcard-trigger { margin-top: 30px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--border); padding: 12px 22px; border-radius: 30px; cursor: pointer; font-size: 0.78rem; font-weight: 600; color: var(--ink2); }
   .vcard-trigger:hover { border-color: var(--teal2); color: var(--teal); }
 
+  /* ── CLINICIAN PROFILE CARD ───────────────────────── */
+  .clinician-profile {
+    position: relative; overflow: hidden; margin-bottom: 32px;
+    background: linear-gradient(150deg, var(--white), #F3F8F6);
+    border: 1px solid var(--border); border-radius: 12px; padding: 26px 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .clinician-profile::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; background: var(--spectrum); }
+  .cp-head { display: flex; align-items: center; gap: 15px; margin-bottom: 18px; }
+  .cp-badge {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(150deg, var(--ink2), var(--ink)); color: var(--sky);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cp-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--ink); line-height: 1.2; }
+  .cp-role { font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-top: 4px; }
+  .cp-row { display: flex; flex-direction: column; gap: 4px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .cp-row + .cp-row { margin-top: 12px; }
+  .cp-label { font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mid); font-weight: 700; }
+  .cp-value { font-size: 0.9rem; color: var(--ink2); line-height: 1.6; }
+  .cp-reg .cp-value { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+  .cp-reg .cp-value svg { color: var(--teal2); flex-shrink: 0; }
+
   /* ── FOOTER ─────────────────────────────────────── */
   footer { position: relative; background: var(--ink); color: rgba(255,255,255,0.55); padding: 34px 80px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; flex-wrap: wrap; gap: 10px; }
   footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--spectrum); opacity: 0.5; }
@@ -831,6 +854,27 @@
     <!-- CONTACT INFO -->
     <div class="contact-info fade-in">
       <p class="lead">For session bookings, questions about fit, or anything else — reach out directly. Both in-person and telehealth sessions are available.</p>
+
+      <div class="clinician-profile">
+        <div class="cp-head">
+          <div class="cp-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V5l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
+          </div>
+          <div>
+            <p class="cp-name">Dr. Pushpinder Singh, MBBS</p>
+            <p class="cp-role">Clinical Psychologist &amp; Sex Therapist</p>
+          </div>
+        </div>
+        <div class="cp-row cp-area">
+          <span class="cp-label">Area of Practice</span>
+          <span class="cp-value">Consultation for Sexual Health, Psychosexual Wellness &amp; LGBTQIA+ Affirming Care</span>
+        </div>
+        <div class="cp-row cp-reg">
+          <span class="cp-label">Registration No.</span>
+          <span class="cp-value"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V5l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>Punjab Medical Council — 43696</span>
+        </div>
+      </div>
+
       <div class="contact-items">
         <div class="contact-item">
           <div class="contact-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
