@@ -159,19 +159,41 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 
+/* ---------- Heritage accordion ---------- */
+function toggleAcc(btn) {
+  var item = btn.closest('.acc-item');
+  var body = item.querySelector('.acc-body');
+  var isOpen = item.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  if (isOpen) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+  } else {
+    body.style.maxHeight = null;
+  }
+}
+// Keep an open panel correctly sized when the viewport width changes.
+window.addEventListener('resize', function () {
+  document.querySelectorAll('.acc-item.open .acc-body').forEach(function (b) {
+    b.style.maxHeight = b.scrollHeight + 'px';
+  });
+});
+
 /* ---------- Fade-in on scroll ---------- */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-/* ---------- Scroll-spy nav highlighting ---------- */
+/* ---------- Scroll-spy nav highlighting + nav elevation ---------- */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
+const navBar = document.querySelector('nav');
 window.addEventListener('scroll', () => {
+  if (navBar) navBar.classList.toggle('scrolled', window.scrollY > 20);
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) current = s.id; });
   navLinks.forEach(a => {
+    if (a.classList.contains('nav-book')) return; // keep the CTA button styling intact
     a.style.color = a.getAttribute('href') === '#' + current ? 'var(--sky)' : '';
   });
 });

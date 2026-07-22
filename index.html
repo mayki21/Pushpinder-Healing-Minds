@@ -7,24 +7,29 @@
 <title>Healing Minds | Dr. Pushpinder Singh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root {
-    --ink:      #16302E;
-    --ink2:     #1D3D3B;
-    --teal:     #2F7A73;
-    --teal2:    #3F9C8F;
-    --sky:      #A9CBC7;
-    --lavender: #B9AEDB;
-    --cream:    #F6F4EF;
+    --ink:      #10292A;
+    --ink2:     #163C39;
+    --teal:     #216A63;
+    --teal2:    #348E82;
+    --sky:      #9BC3BD;
+    --lavender: #B3A6D6;
+    --gold:     #C8A54E;
+    --cream:    #F7F5EF;
+    --sand:     #EFEAE0;
     --white:    #FFFFFF;
-    --mid:      #5C6F6D;
-    --border:   #DCE6E3;
+    --mid:      #56696A;
+    --border:   #E1E9E6;
+    --shadow-sm: 0 1px 2px rgba(16,41,42,0.04), 0 2px 8px rgba(16,41,42,0.05);
+    --shadow-md: 0 8px 24px rgba(16,41,42,0.08), 0 2px 6px rgba(16,41,42,0.04);
+    --shadow-lg: 0 24px 60px rgba(16,41,42,0.14), 0 8px 20px rgba(16,41,42,0.06);
     --font-display: 'Fraunces', Georgia, serif;
-    --font-body:    'Public Sans', sans-serif;
-    --spectrum: linear-gradient(90deg, var(--teal) 0%, var(--sky) 45%, var(--lavender) 100%);
+    --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --spectrum: linear-gradient(90deg, var(--teal) 0%, var(--teal2) 40%, var(--sky) 70%, var(--lavender) 100%);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,24 +38,32 @@
     background: var(--white);
     color: var(--ink);
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.7;
-    font-size: 15.5px;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.006em;
   }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
+  ::selection { background: rgba(52,142,130,0.22); }
 
   /* ── NAV ─────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(22,48,46,0.96);
-    backdrop-filter: blur(8px);
+    background: rgba(16,41,42,0.82);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 48px; height: 68px;
+    padding: 0 48px; height: 72px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
+  nav.scrolled { background: rgba(16,41,42,0.97); box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
   nav::after {
     content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-    background: var(--spectrum); opacity: 0.55;
+    background: var(--spectrum); opacity: 0.6;
   }
   .nav-brand {
     font-family: var(--font-display); font-size: 1.25rem; font-weight: 600;
@@ -58,13 +71,24 @@
     display: flex; flex-direction: column; line-height: 1.15;
   }
   .nav-brand span { font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky); font-weight: 500; margin-top: 2px; }
-  .nav-links { display: flex; gap: 30px; list-style: none; }
+  .nav-links { display: flex; gap: 34px; list-style: none; align-items: center; }
   .nav-links a {
-    color: rgba(255,255,255,0.78); text-decoration: none;
-    font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
-    transition: color 0.2s;
+    position: relative; color: rgba(255,255,255,0.72); text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 0.11em; text-transform: uppercase; font-weight: 500;
+    transition: color 0.2s; padding: 6px 0;
   }
-  .nav-links a:hover { color: var(--sky); }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: 0; height: 1.5px; width: 0;
+    background: var(--sky); transition: width 0.25s ease;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.nav-book {
+    background: var(--teal2); color: #fff; padding: 9px 20px; border-radius: 4px;
+    letter-spacing: 0.09em; transition: background 0.2s, transform 0.2s;
+  }
+  .nav-links a.nav-book::after { display: none; }
+  .nav-links a.nav-book:hover { background: var(--sky); color: var(--ink); transform: translateY(-1px); }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
   .hamburger span { width: 24px; height: 2px; background: var(--sky); display: block; }
   .mobile-menu {
@@ -76,15 +100,25 @@
 
   /* ── HERO ─────────────────────────────────────────── */
   #home {
-    min-height: 100vh; background: linear-gradient(165deg, #17332F 0%, #12211F 100%);
+    min-height: 100vh; background: linear-gradient(160deg, #14302C 0%, #102625 55%, #0C1D1C 100%);
     display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center;
-    padding: 116px 80px 80px; position: relative; overflow: hidden;
+    padding: 120px 80px 80px; position: relative; overflow: hidden;
   }
   #home::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 65% 55% at 75% 40%, rgba(169,203,199,0.10) 0%, transparent 70%);
+    background:
+      radial-gradient(ellipse 60% 50% at 78% 38%, rgba(155,195,189,0.14) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 45% at 12% 88%, rgba(179,166,214,0.10) 0%, transparent 70%);
     pointer-events: none;
   }
+  #home::after {
+    content: ''; position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 0.5px, transparent 0.5px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 0%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 0%, transparent 75%);
+  }
+  .hero-text, .hero-image-col { position: relative; z-index: 1; }
   .hero-text { max-width: 560px; }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 10px;
@@ -93,37 +127,43 @@
   }
   .hero-eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--spectrum); }
   .hero-name {
-    font-family: var(--font-display); font-size: clamp(2.6rem, 4.6vw, 4.4rem);
-    font-weight: 600; color: #fff; line-height: 1.08; margin-bottom: 14px;
+    font-family: var(--font-display); font-size: clamp(2.7rem, 4.8vw, 4.6rem);
+    font-weight: 600; color: #fff; line-height: 1.06; margin-bottom: 16px;
+    letter-spacing: -0.015em;
   }
   .hero-title {
-    font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; font-style: italic;
-    color: var(--sky); margin-bottom: 30px;
+    font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; font-style: italic;
+    color: var(--sky); margin-bottom: 30px; letter-spacing: 0.005em;
   }
-  .hero-body { color: rgba(255,255,255,0.68); font-size: 0.92rem; line-height: 1.9; max-width: 480px; }
+  .hero-body { color: rgba(255,255,255,0.72); font-size: 0.98rem; line-height: 1.85; max-width: 490px; }
   .hero-cta { display: flex; gap: 16px; margin-top: 38px; flex-wrap: wrap; }
   .btn-primary {
-    background: var(--teal2); color: #fff; padding: 13px 30px; font-size: 0.74rem;
+    background: var(--teal2); color: #fff; padding: 14px 32px; font-size: 0.74rem;
     letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; font-family: var(--font-body);
-    border: none; cursor: pointer; text-decoration: none; transition: background 0.2s; border-radius: 3px;
+    border: none; cursor: pointer; text-decoration: none; border-radius: 5px;
+    box-shadow: 0 6px 18px rgba(52,142,130,0.28); transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   }
-  .btn-primary:hover { background: var(--teal); }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(52,142,130,0.36); }
   .btn-outline {
-    border: 1px solid rgba(169,203,199,0.45); color: var(--sky); padding: 12px 30px;
+    border: 1px solid rgba(155,195,189,0.4); color: var(--sky); padding: 13px 30px;
     font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
-    font-family: var(--font-body); text-decoration: none; transition: all 0.2s; background: transparent; border-radius: 3px;
+    font-family: var(--font-body); text-decoration: none; transition: all 0.2s; background: transparent; border-radius: 5px;
   }
-  .btn-outline:hover { border-color: var(--sky); background: rgba(169,203,199,0.08); }
+  .btn-outline:hover { border-color: var(--sky); background: rgba(155,195,189,0.1); transform: translateY(-2px); }
 
   .hero-image-col { display: flex; justify-content: center; align-items: center; position: relative; }
   .hero-photo-frame {
-    width: 360px; height: 440px; position: relative;
-    border-radius: 62% 38% 55% 45% / 55% 45% 58% 42%;
-    overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+    width: 370px; height: 460px; position: relative;
+    border-radius: 180px 180px 24px 24px;
+    overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.4);
   }
   .hero-photo-frame::after {
-    content: ''; position: absolute; inset: -10px; border-radius: 64% 36% 57% 43% / 57% 43% 60% 40%;
-    border: 1.5px solid rgba(169,203,199,0.35); pointer-events: none;
+    content: ''; position: absolute; inset: -12px; border-radius: 192px 192px 34px 34px;
+    border: 1.5px solid rgba(155,195,189,0.4); pointer-events: none;
+  }
+  .hero-photo-frame::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, transparent 55%, rgba(12,29,28,0.55) 100%);
   }
   .hero-photo-frame img, .hero-photo-placeholder { width: 100%; height: 100%; object-fit: cover; display: block; }
   .hero-photo-placeholder {
@@ -133,19 +173,23 @@
   .hero-photo-placeholder svg { opacity: 0.3; }
   .hero-photo-placeholder p { color: rgba(255,255,255,0.35); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 0 20px; }
 
-  .hero-stats { display: flex; gap: 36px; margin-top: 44px; flex-wrap: wrap; }
-  .stat-item { border-left: 2px solid var(--teal2); padding-left: 14px; }
-  .stat-number { font-family: var(--font-display); font-size: 1.9rem; color: var(--sky); font-weight: 500; line-height: 1; }
-  .stat-label { font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 4px; }
+  .hero-stats { display: flex; gap: 38px; margin-top: 48px; flex-wrap: wrap; }
+  .stat-item { border-left: 2px solid; border-image: var(--spectrum) 1; padding-left: 16px; }
+  .stat-number { font-family: var(--font-display); font-size: 2rem; color: #fff; font-weight: 500; line-height: 1; letter-spacing: -0.01em; }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
 
   /* ── SECTIONS COMMON ─────────────────────────────── */
-  section { padding: 92px 80px; }
+  section { padding: 100px 80px; }
   section.alt { background: var(--cream); }
-  .section-header { margin-bottom: 48px; max-width: 700px; }
-  .section-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; font-weight: 600; }
-  .section-title { font-family: var(--font-display); font-size: clamp(1.9rem, 2.8vw, 2.5rem); font-weight: 600; color: var(--ink); line-height: 1.15; }
-  .section-divider { width: 44px; height: 3px; background: var(--spectrum); margin-top: 18px; border-radius: 2px; }
-  .section-body { font-size: 0.92rem; line-height: 1.9; color: #374b49; max-width: 760px; }
+  .section-header { margin-bottom: 52px; max-width: 720px; }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; font-weight: 600;
+  }
+  .section-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--spectrum); border-radius: 2px; }
+  .section-title { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.65rem); font-weight: 600; color: var(--ink); line-height: 1.12; letter-spacing: -0.012em; }
+  .section-divider { width: 48px; height: 3px; background: var(--spectrum); margin-top: 20px; border-radius: 2px; }
+  .section-body { font-size: 0.97rem; line-height: 1.85; color: #38504D; max-width: 760px; }
 
   .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -161,16 +205,29 @@
   }
 
   /* ── SPECIALTY CARDS ─────────────────────────────── */
-  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 44px; }
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 48px; }
   .care-card {
-    background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 34px 28px;
-    transition: transform 0.25s, box-shadow 0.25s; text-decoration: none; color: inherit; display: block;
+    position: relative; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 36px 30px;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    text-decoration: none; color: inherit; display: block; overflow: hidden; box-shadow: var(--shadow-sm);
   }
-  .care-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(22,48,46,0.10); }
-  .care-card-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--teal); }
-  .care-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
-  .care-card p { font-size: 0.85rem; color: var(--mid); line-height: 1.75; }
-  .care-card .learn { display: inline-block; margin-top: 16px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); font-weight: 600; }
+  .care-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--spectrum); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+  }
+  .care-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+  .care-card:hover::before { transform: scaleX(1); }
+  .care-card-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(150deg, var(--cream), #EAF1EE);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 22px; color: var(--teal);
+    transition: background 0.28s ease, color 0.28s ease;
+  }
+  .care-card:hover .care-card-icon { background: var(--teal); color: #fff; }
+  .care-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+  .care-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.75; }
+  .care-card .learn { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); font-weight: 600; transition: gap 0.2s ease; }
+  .care-card:hover .learn { gap: 12px; }
 
   /* ── DETAIL SECTIONS (specialty pages) ─────────────── */
   .detail-section { scroll-margin-top: 90px; }
@@ -178,38 +235,108 @@
   .issue-item { display: flex; gap: 12px; align-items: flex-start; font-size: 0.87rem; color: #374b49; }
   .issue-item::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--spectrum); margin-top: 7px; flex-shrink: 0; }
   .goal-box {
-    margin-top: 36px; background: var(--cream); border-left: 3px solid var(--teal2); padding: 24px 28px;
-    max-width: 720px; border-radius: 0 6px 6px 0;
+    margin-top: 38px; background: linear-gradient(135deg, var(--cream), #EEF3F0);
+    border: 1px solid var(--border); border-left: 3px solid var(--teal2); padding: 26px 30px;
+    max-width: 720px; border-radius: 0 10px 10px 0; box-shadow: var(--shadow-sm);
   }
-  .goal-box p { font-size: 0.88rem; color: var(--ink2); }
+  .goal-box p { font-size: 0.9rem; color: var(--ink2); }
   .goal-box .label { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 8px; }
 
   /* ── TRANSPARENCY / TRUST ─────────────────────────── */
-  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 44px; }
-  .trust-item { padding: 26px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; }
-  .trust-item h4 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
-  .trust-item p { font-size: 0.84rem; color: var(--mid); line-height: 1.75; }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 48px; }
+  .trust-item {
+    padding: 30px 28px; background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: var(--shadow-sm); transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .trust-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .trust-item h4 { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; color: var(--ink); }
+  .trust-item h4::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--spectrum); flex-shrink: 0; }
+  .trust-item p { font-size: 0.86rem; color: var(--mid); line-height: 1.78; }
 
   /* ── MODALITIES ─────────────────────────────────── */
   .modality-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
   .modality-chip {
-    border: 1px solid var(--border); border-radius: 30px; padding: 10px 20px; font-size: 0.78rem;
-    color: var(--ink2); background: var(--white); font-weight: 500;
+    border: 1px solid var(--border); border-radius: 30px; padding: 11px 22px; font-size: 0.79rem;
+    color: var(--ink2); background: var(--white); font-weight: 500; box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
+  .modality-chip:hover { border-color: var(--teal2); color: var(--teal); transform: translateY(-2px); }
+
+  /* ── FRAMEWORK CHIPS (clinical specificity) ───────── */
+  .framework-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .framework-chip {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid var(--border); border-radius: 30px; padding: 10px 18px; font-size: 0.78rem;
+    color: var(--ink2); background: var(--white); font-weight: 600; box-shadow: var(--shadow-sm);
+  }
+  .framework-chip::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--spectrum); flex-shrink: 0; }
+
+  /* ── PHILOSOPHY CALLOUT ───────────────────────────── */
+  .philosophy-callout {
+    margin-top: 8px; margin-bottom: 40px; max-width: 860px;
+    background: linear-gradient(140deg, var(--ink) 0%, var(--ink2) 100%);
+    color: rgba(255,255,255,0.9); border-radius: 14px; padding: 34px 38px;
+    position: relative; overflow: hidden; box-shadow: var(--shadow-md);
+  }
+  .philosophy-callout::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; background: var(--spectrum); }
+  .philosophy-callout p { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; line-height: 1.6; color: #fff; }
+  .philosophy-callout p + p { font-family: var(--font-body); font-style: normal; font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.72); margin-top: 14px; }
+
+  /* ── HERITAGE / ACCORDION ─────────────────────────── */
+  #heritage { background: linear-gradient(180deg, #0E2422 0%, #0C1D1C 100%); color: #fff; }
+  #heritage .section-eyebrow { color: var(--sky); }
+  #heritage .section-eyebrow::before { background: var(--spectrum); }
+  #heritage .section-title { color: #fff; }
+  #heritage .section-body { color: rgba(255,255,255,0.7); }
+  .heritage-intro { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 820px; }
+  .accordion { margin-top: 46px; max-width: 900px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .acc-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .acc-head {
+    width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+    display: flex; align-items: center; gap: 20px; padding: 24px 4px; color: #fff; font-family: var(--font-body);
+    transition: color 0.2s ease;
+  }
+  .acc-head:hover { color: var(--sky); }
+  .acc-num { font-family: var(--font-display); font-size: 0.95rem; color: var(--teal2); font-weight: 500; flex-shrink: 0; width: 30px; }
+  .acc-q { flex: 1; font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; line-height: 1.3; }
+  .acc-icon { position: relative; width: 20px; height: 20px; flex-shrink: 0; }
+  .acc-icon::before, .acc-icon::after { content: ''; position: absolute; background: var(--sky); transition: transform 0.3s ease, opacity 0.3s ease; }
+  .acc-icon::before { top: 9px; left: 0; width: 20px; height: 2px; }
+  .acc-icon::after { top: 0; left: 9px; width: 2px; height: 20px; }
+  .acc-item.open .acc-icon::after { transform: scaleY(0); opacity: 0; }
+  .acc-item.open .acc-q { color: var(--sky); }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .acc-body-inner > div { padding: 0 4px 28px 54px; }
+  .acc-body-inner p { font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.74); }
+  .acc-body-inner p + p { margin-top: 14px; }
+  .acc-body-inner strong { color: #fff; font-weight: 600; }
+  .acc-body-inner em { color: var(--sky); font-style: italic; }
+  .heritage-note { margin-top: 40px; max-width: 900px; font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.75; border-left: 2px solid rgba(255,255,255,0.15); padding-left: 18px; }
 
   /* ── TESTIMONIALS ─────────────────────────────────── */
-  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 44px; }
-  .testimonial-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 30px; }
-  .testimonial-card p.quote { font-family: var(--font-display); font-style: italic; font-size: 1.02rem; color: var(--ink2); line-height: 1.65; margin-bottom: 18px; }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 48px; }
+  .testimonial-card {
+    position: relative; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 34px 32px 30px;
+    box-shadow: var(--shadow-sm); transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .testimonial-card::before {
+    content: '\201C'; font-family: var(--font-display); font-size: 3.4rem; color: var(--sky);
+    position: absolute; top: 14px; left: 24px; line-height: 1; opacity: 0.5;
+  }
+  .testimonial-card p.quote { position: relative; font-family: var(--font-display); font-style: italic; font-size: 1.04rem; color: var(--ink2); line-height: 1.65; margin: 22px 0 18px; }
   .testimonial-card p.attr { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); font-weight: 600; }
 
   /* ── CRISIS BANNER ─────────────────────────────────── */
   .crisis-banner {
-    background: var(--ink); color: rgba(255,255,255,0.85); padding: 22px 80px;
-    font-size: 0.82rem; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    background: var(--ink2); color: rgba(255,255,255,0.82); padding: 20px 80px;
+    font-size: 0.84rem; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
-  .crisis-banner strong { color: var(--sky); }
-  .crisis-banner a { color: var(--sky); text-decoration: underline; }
+  .crisis-banner strong { color: var(--sky); display: inline-flex; align-items: center; gap: 8px; }
+  .crisis-banner strong::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(200,165,78,0.2); flex-shrink: 0; }
+  .crisis-banner a { color: var(--sky); text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
+  .crisis-banner a:hover { color: #fff; }
 
   /* ── CONTACT ─────────────────────────────────────── */
   #contact { background: var(--cream); }
@@ -218,17 +345,22 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .form-group label { display: block; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; font-weight: 600; }
   .form-group input, .form-group textarea, .form-group select {
-    width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 4px;
-    font-family: var(--font-body); font-size: 0.88rem; background: var(--white); color: var(--ink);
+    width: 100%; padding: 13px 15px; border: 1px solid var(--border); border-radius: 7px;
+    font-family: var(--font-body); font-size: 0.9rem; background: var(--white); color: var(--ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: #9AAAA8; }
   .form-group input[type="date"], .form-group input[type="time"] { color: var(--ink); }
   .form-group textarea { resize: vertical; min-height: 110px; }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--teal2); }
-  .btn-teal {
-    background: var(--teal); color: #fff; border: none; padding: 13px 36px; font-size: 0.76rem;
-    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; cursor: pointer; border-radius: 3px; transition: background 0.2s;
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none; border-color: var(--teal2); box-shadow: 0 0 0 3px rgba(52,142,130,0.14);
   }
-  .btn-teal:hover { background: var(--ink2); }
+  .btn-teal {
+    background: var(--teal); color: #fff; border: none; padding: 14px 38px; font-size: 0.76rem;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; cursor: pointer; border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(33,106,99,0.26); transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .btn-teal:hover { background: var(--ink2); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(33,106,99,0.32); }
   .btn-teal:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .contact-info p.lead { font-size: 0.9rem; color: #374b49; margin-bottom: 32px; max-width: 420px; }
@@ -244,8 +376,11 @@
   .vcard-trigger:hover { border-color: var(--teal2); color: var(--teal); }
 
   /* ── FOOTER ─────────────────────────────────────── */
-  footer { background: var(--ink); color: rgba(255,255,255,0.5); padding: 30px 80px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; flex-wrap: wrap; gap: 10px; }
-  footer span { color: rgba(255,255,255,0.35); }
+  footer { position: relative; background: var(--ink); color: rgba(255,255,255,0.55); padding: 34px 80px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; flex-wrap: wrap; gap: 10px; }
+  footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--spectrum); opacity: 0.5; }
+  footer a { transition: color 0.2s; }
+  footer a:hover { color: #fff; }
+  footer span { color: rgba(255,255,255,0.38); }
 
   .btn-gold { background: var(--teal); color: #fff; text-decoration: none; font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; border-radius: 3px; }
 
@@ -280,7 +415,8 @@
     <li><a href="#sex-therapy">Sex Therapy</a></li>
     <li><a href="#gender-affirming">Gender-Affirming Care</a></li>
     <li><a href="#holistic">Holistic Wellbeing</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#heritage">Perspectives</a></li>
+    <li><a href="#contact" class="nav-book">Book a Session</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
@@ -289,6 +425,7 @@
   <a href="#sex-therapy" onclick="closeMenu()">Sex Therapy</a>
   <a href="#gender-affirming" onclick="closeMenu()">Gender-Affirming Care</a>
   <a href="#holistic" onclick="closeMenu()">Holistic Wellbeing</a>
+  <a href="#heritage" onclick="closeMenu()">Perspectives</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 
@@ -383,7 +520,7 @@
     <p class="section-eyebrow">01 — Cultivating a Fulfilling Sex Life</p>
     <h2 class="section-title">Sex Therapy &amp; Intimacy</h2>
     <div class="section-divider"></div>
-    <p class="section-body" style="margin-top:18px;">This practice is sex-positive and kink-aware. Therapy here is a safe space to talk openly about intimacy, desire, and connection — without shame, and without being measured against a "normal" that was never built for everyone.</p>
+    <p class="section-body" style="margin-top:18px;">This practice is sex-positive, kink-aware, and poly-informed. Therapy here is a safe space to talk openly about intimacy, desire, and connection — without shame, and without being measured against a "normal" that was never built for everyone. Seeking help for your sex life can feel vulnerable; the aim is to normalise that, and to help you build the sex life <em>you</em> actually want.</p>
   </div>
   <div class="fade-in">
     <div class="issue-grid">
@@ -452,6 +589,104 @@
   </div>
 </section>
 
+<!-- HERITAGE / PERSPECTIVES -->
+<section id="heritage" class="detail-section">
+  <div class="section-header heritage-intro fade-in">
+    <p class="section-eyebrow">A Sex-Positive Heritage</p>
+    <h2 class="section-title">Pleasure, consent, and gender diversity are not new ideas</h2>
+    <div class="section-divider"></div>
+    <p class="section-body" style="margin-top:18px;">Long before colonial-era shame reshaped South Asian attitudes toward the body, Indian traditions treated physical pleasure as a healthy part of a whole life — and recognised a spectrum of genders and desires openly. Understanding this heritage is part of what makes this practice sex-positive and gender-affirming: these values are a return to something indigenous, not an import.</p>
+  </div>
+
+  <div class="accordion fade-in">
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="acc-num">01</span>
+        <span class="acc-q">Re-evaluating the Kamasutra</span>
+        <span class="acc-icon"></span>
+      </button>
+      <div class="acc-body"><div class="acc-body-inner"><div>
+        <p>In both the West and modern India, the <em>Kamasutra</em> is often flattened into a mere "sex manual" or dismissed as obscene — a reading shaped by later moral frameworks that treat the body as ephemeral and physical pleasure as sinful, permissible only for reproduction.</p>
+        <p>Written by the sage <strong>Vatsyayana</strong> on the banks of the Ganges, the text actually presents physical pleasure as a positive, healthy aspect of living — something to be cultivated thoughtfully alongside one's spiritual and material goals, not in opposition to them.</p>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="acc-num">02</span>
+        <span class="acc-q">Seven books on the art of living well</span>
+        <span class="acc-icon"></span>
+      </button>
+      <div class="acc-body"><div class="acc-body-inner"><div>
+        <p>Composed between roughly the 4th century BCE and the 3rd century CE, the work is not a single book but a <strong>collection of seven books</strong> — 36 chapters and some 1,250 verses. Only a fraction concerns sexual technique.</p>
+        <p>Book One frames a "good life" through the four <em>Purusharthas</em> — Dharma (moral values), Artha (material well-being), Kama (pleasure), and Moksha (liberation). Later books address emotional intimacy, the design of a home that nurtures joy, and social life. Book Six describes the <em>Ganikas</em> — not prostitutes in the modern sense, but accomplished, educated women of the cultured elite.</p>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="acc-num">03</span>
+        <span class="acc-q">Women's pleasure &amp; the centrality of consent</span>
+        <span class="acc-icon"></span>
+      </button>
+      <div class="acc-body"><div class="acc-body-inner"><div>
+        <p>The <em>Kamasutra</em> explicitly rejects the idea that only a man's pleasure matters, or that a woman depends entirely on a man for her own satisfaction. Vatsyayana observes that a man's desire tends to ignite quickly like fire, while a woman's rises and settles more slowly, like water — a difference to be met with patience, not ignored.</p>
+        <p>Crucially, the text frames intimacy around active, ongoing <strong>consent</strong>: touch, closeness, and engagement are described as appropriate only when they are genuinely desired. It is a strikingly woman-centred ethic for its era.</p>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="acc-num">04</span>
+        <span class="acc-q">Emotional intimacy, trust, and repair</span>
+        <span class="acc-icon"></span>
+      </button>
+      <div class="acc-body"><div class="acc-body-inner"><div>
+        <p>Beyond the physical, Vatsyayana writes about love, emotional bonds, and how partners keep a relationship fresh over time. He even treats healthy lovers' quarrels as part of sustaining excitement — provided they rest on deep mutual trust.</p>
+        <p>The described dynamic of disagreement and reconciliation is notably woman-centred, emphasising humility and repair rather than dominance — a remarkably modern picture of intimacy as something actively tended.</p>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="acc-num">05</span>
+        <span class="acc-q">Gender diversity in ancient India</span>
+        <span class="acc-icon"></span>
+      </button>
+      <div class="acc-body"><div class="acc-body-inner"><div>
+        <p>Ancient texts — including the <em>Susruta Samhita</em>, the <em>Narada Smriti</em>, and the <em>Kamasutra</em> — recognised a range of sexualities and gender identities, often grouped under the idea of <em>Tritiya Prakriti</em>, a "third nature." Vedic literature describes multiple categories of gender-diverse and same-sex-attracted people, among both men and women.</p>
+        <p>Transgender and non-binary people — including communities today known as <strong>Hijras</strong> — lived openly, with socially recognised identities, long before the systemic erasure of later eras.</p>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="acc-num">06</span>
+        <span class="acc-q">What colonisation changed</span>
+        <span class="acc-icon"></span>
+      </button>
+      <div class="acc-body"><div class="acc-body-inner"><div>
+        <p>Much of the conservatism that surrounds sex and gender in South Asia today is not indigenous — it is inherited. British colonial rule imported <strong>Victorian morality</strong> and enshrined it in law.</p>
+        <p>Statutes such as the Criminal Tribes Act and penal codes targeting non-reproductive or gender-non-conforming expression criminalised and stigmatised ways of life that earlier Indian society had long accommodated, sharply narrowing the culture's inherited tolerance.</p>
+      </div></div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="acc-num">07</span>
+        <span class="acc-q">Art, architecture &amp; the fluidity of myth</span>
+        <span class="acc-icon"></span>
+      </button>
+      <div class="acc-body"><div class="acc-body-inner"><div>
+        <p>Temples at <strong>Khajuraho, Konark, and Kanchipuram</strong> carry intimate and same-sex imagery on their walls. Far from being read as obscene, these sculptures were understood as reflections of the mysteries of life, learning, and human nature.</p>
+        <p>Hindu mythology returns again and again to fluid gender: <em>Ardhanarishvara</em> (half-Shiva, half-Parvati), Krishna dressing as a woman in the <em>Gita Govinda</em> tradition, deities draped in the garments of another gender — all gesturing at identity as something fluid rather than fixed and binary.</p>
+      </div></div></div>
+    </div>
+  </div>
+
+  <p class="heritage-note fade-in">Shared as cultural and historical context, not clinical or religious instruction. This heritage informs the affirming, non-judgmental lens of the practice — your own beliefs, background, and boundaries are always what guide the work in session.</p>
+</section>
+
 <!-- TRUST / TRANSPARENCY -->
 <section id="trust">
   <div class="section-header fade-in">
@@ -459,18 +694,36 @@
     <h2 class="section-title">Transparency, from intake to invoice</h2>
     <div class="section-divider"></div>
   </div>
-  <div class="trust-grid">
+
+  <div class="philosophy-callout fade-in">
+    <p>Being queer, trans, or kink-inclined is never the pathology.</p>
+    <p>The distress that brings people to therapy often comes from the outside — minority stress, systemic transphobia, purity culture, the daily weight of navigating an unaccommodating world. The work is to build resilience against those external pressures while celebrating who you actually are, not to "fix" your identity.</p>
+  </div>
+
+  <p class="section-body fade-in" style="margin-bottom:6px;">These aren't buzzwords — they're the specific frameworks and training this practice works from:</p>
+  <div class="framework-row fade-in">
+    <span class="framework-chip">Trans-Affirming</span>
+    <span class="framework-chip">WPATH-Informed</span>
+    <span class="framework-chip">Sex-Positive</span>
+    <span class="framework-chip">Kink-Aware</span>
+    <span class="framework-chip">Poly-Informed</span>
+    <span class="framework-chip">Trauma-Informed</span>
+    <span class="framework-chip">ENM-Competent</span>
+    <span class="framework-chip">Religious &amp; Purity-Culture Trauma</span>
+  </div>
+
+  <div class="trust-grid" style="margin-top:40px;">
     <div class="trust-item fade-in">
       <h4>Names &amp; Pronouns</h4>
-      <p>Insurance may require a legal name on billing, but clinical notes and every internal communication use your chosen name and pronouns. Systems are in place so you are never deadnamed in session or in the waiting room.</p>
+      <p>Insurance may require a legal name on billing documents, but clinical notes and every internal communication always use your chosen name and pronouns. Systems are in place so you are never deadnamed in session or in the waiting room.</p>
     </div>
     <div class="trust-item fade-in">
       <h4>Inclusive Intake</h4>
-      <p>Intake paperwork includes space for chosen name, pronouns, and a full spectrum of relationship structures — not just a box for "married" or "single."</p>
+      <p>Intake paperwork is designed inclusively — with space for your chosen name, pronouns, and a full spectrum of relationship structures, not just a box for "married" or "single."</p>
     </div>
     <div class="trust-item fade-in">
       <h4>Cultural Humility</h4>
-      <p>As an allied clinician, Dr. Singh is committed to ongoing consultation, education, and decentering assumptions — so the burden of "teaching" never falls on the client.</p>
+      <p>As an allied clinician, Dr. Singh is committed to continuous consultation, education, and decentering personal assumptions — so the burden of "teaching your therapist" never falls on you.</p>
     </div>
   </div>
 </section>
