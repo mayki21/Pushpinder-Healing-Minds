@@ -40,16 +40,80 @@ document.getElementById('vcard-modal').addEventListener('click', function (e) {
   if (e.target === this) closeVcard();
 });
 
-function downloadVcard() {
-  const blob = new Blob([VCARD_DATA], { type: 'text/vcard;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'Dr-Pushpinder-Singh.vcf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+function downloadBusinessCardPDF() {
+  const { jsPDF } = window.jspdf;
+  // Business-card-proportioned page, landscape, in mm
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: [140, 85] });
+
+  const inkColor = [22, 48, 46];      // --ink
+  const tealColor = [47, 122, 115];   // --teal
+  const skyColor = [169, 203, 199];   // --sky
+  const midColor = [92, 111, 109];    // --mid
+
+  // Background
+  doc.setFillColor(...inkColor);
+  doc.rect(0, 0, 140, 85, 'F');
+
+  // Spectrum accent bar (teal -> sky simplified as two blocks, jsPDF has no native gradient)
+  doc.setFillColor(...tealColor);
+  doc.rect(0, 0, 4, 85, 'F');
+  doc.setFillColor(...skyColor);
+  doc.rect(0, 78, 4, 7, 'F');
+
+  // Practice name
+  doc.setFont('times', 'italic');
+  doc.setFontSize(9);
+  doc.setTextColor(...skyColor);
+  doc.text('Healing Minds', 14, 16);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(6);
+  doc.setTextColor(200, 210, 208);
+  doc.text('Compassion. Care. Commitment.', 14, 20.5);
+
+  // Name
+  doc.setFont('times', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(255, 255, 255);
+  doc.text('Dr. Pushpinder Singh', 14, 34);
+
+  // Title
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.5);
+  doc.setTextColor(...skyColor);
+  doc.text('MBBS | Clinical Psychologist | Sex Therapist', 14, 40.5);
+
+  // Divider line
+  doc.setDrawColor(...tealColor);
+  doc.setLineWidth(0.4);
+  doc.line(14, 46, 126, 46);
+
+  // Contact details
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(230, 235, 234);
+
+  const details = [
+    ['Phone', '+91 87000 56840'],
+    ['Email', 'pushpinder.singh873@gmail.com'],
+    ['Address', 'H.No. 10552, St. No. 5, Malout Road,'],
+    ['', 'Sri Muktsar Sahib - 152026, Punjab'],
+  ];
+
+  let y = 53;
+  details.forEach(([label, value]) => {
+    if (label) {
+      doc.setTextColor(...skyColor);
+      doc.setFontSize(6.5);
+      doc.text(label.toUpperCase(), 14, y);
+      y += 4;
+    }
+    doc.setTextColor(230, 235, 234);
+    doc.setFontSize(8);
+    doc.text(value, 14, y);
+    y += label ? 4.5 : 4.5;
+  });
+
+  doc.save('Dr-Pushpinder-Singh-Business-Card.pdf');
 }
 
 /* ---------- Appointment date: block past dates ---------- */
