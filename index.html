@@ -407,6 +407,124 @@
 
   .btn-gold { background: var(--teal); color: #fff; text-decoration: none; font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; border-radius: 3px; }
 
+  /* ── CHATBOT ──────────────────────────────────────── */
+  #hm-chat, #hm-chat * { box-sizing: border-box; }
+  .hm-launcher {
+    position: fixed; bottom: 26px; right: 26px; z-index: 9990;
+    width: 62px; height: 62px; border-radius: 50%; border: none; cursor: pointer;
+    background: linear-gradient(150deg, var(--teal2), var(--teal)); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 30px rgba(33,106,99,0.42); transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .hm-launcher:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 38px rgba(33,106,99,0.5); }
+  .hm-launcher svg { width: 27px; height: 27px; }
+  .hm-launcher .hm-ico-close { display: none; }
+  .hm-launcher.active .hm-ico-open { display: none; }
+  .hm-launcher.active .hm-ico-close { display: block; }
+  .hm-launcher::after {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(52,142,130,0.5); animation: hmPulse 2.6s infinite;
+  }
+  .hm-launcher.active::after { animation: none; }
+  @keyframes hmPulse { 0% { box-shadow: 0 0 0 0 rgba(52,142,130,0.45);} 70% { box-shadow: 0 0 0 16px rgba(52,142,130,0);} 100% { box-shadow: 0 0 0 0 rgba(52,142,130,0);} }
+  .hm-badge {
+    position: absolute; top: -3px; right: -3px; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gold); color: var(--ink); font-size: 0.7rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
+  }
+
+  .hm-teaser {
+    position: fixed; bottom: 100px; right: 26px; z-index: 9989; max-width: 250px;
+    background: #fff; color: var(--ink); border: 1px solid var(--border); border-radius: 14px 14px 4px 14px;
+    padding: 14px 16px; box-shadow: var(--shadow-lg); font-size: 0.86rem; line-height: 1.5;
+    opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .hm-teaser.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .hm-teaser strong { color: var(--teal); }
+  .hm-teaser .hm-teaser-x { position: absolute; top: 6px; right: 9px; cursor: pointer; color: var(--mid); font-size: 0.9rem; background: none; border: none; }
+
+  .hm-window {
+    position: fixed; bottom: 96px; right: 26px; z-index: 9991;
+    width: 340px; max-width: calc(100vw - 40px); height: 480px; max-height: calc(100vh - 150px);
+    background: var(--white); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 30px 70px rgba(16,41,42,0.35); border: 1px solid var(--border);
+    opacity: 0; transform: translateY(16px) scale(0.98); pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+  }
+  .hm-window.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+  .hm-header {
+    background: linear-gradient(150deg, var(--ink2), var(--ink)); color: #fff;
+    padding: 16px 18px; display: flex; align-items: center; gap: 12px; position: relative;
+  }
+  .hm-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--spectrum); opacity: 0.7; }
+  .hm-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(150deg, var(--teal2), var(--teal)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .hm-htext { flex: 1; min-width: 0; }
+  .hm-htext h4 { font-family: var(--font-display); font-size: 1.02rem; font-weight: 600; line-height: 1.2; }
+  .hm-htext p { font-size: 0.7rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+  .hm-htext p::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #5FD08A; box-shadow: 0 0 0 3px rgba(95,208,138,0.25); }
+  .hm-hclose { background: none; border: none; color: rgba(255,255,255,0.75); cursor: pointer; font-size: 1.3rem; line-height: 1; padding: 4px; }
+  .hm-hclose:hover { color: #fff; }
+
+  .hm-body { flex: 1; overflow-y: auto; padding: 20px 16px 8px; background: var(--cream); display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
+  .hm-body::-webkit-scrollbar { width: 7px; }
+  .hm-body::-webkit-scrollbar-thumb { background: rgba(33,106,99,0.25); border-radius: 4px; }
+
+  .hm-msg { max-width: 84%; padding: 11px 15px; font-size: 0.87rem; line-height: 1.55; border-radius: 16px; animation: hmIn 0.25s ease; }
+  @keyframes hmIn { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
+  .hm-msg.bot { align-self: flex-start; background: #fff; color: var(--ink); border: 1px solid var(--border); border-bottom-left-radius: 5px; box-shadow: var(--shadow-sm); }
+  .hm-msg.user { align-self: flex-end; background: linear-gradient(150deg, var(--teal2), var(--teal)); color: #fff; border-bottom-right-radius: 5px; }
+  .hm-msg.bot a { color: var(--teal); font-weight: 600; }
+  .hm-msg.bot strong { color: var(--ink2); }
+  .hm-msg.crisis { border-color: var(--gold); background: #FFFBF2; }
+
+  .hm-typing { align-self: flex-start; background: #fff; border: 1px solid var(--border); border-radius: 16px; border-bottom-left-radius: 5px; padding: 13px 16px; display: flex; gap: 5px; }
+  .hm-typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--teal2); opacity: 0.5; animation: hmBlink 1.2s infinite; }
+  .hm-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .hm-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes hmBlink { 0%,60%,100% { opacity: 0.3; transform: translateY(0);} 30% { opacity: 1; transform: translateY(-3px);} }
+
+  .hm-quicks { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 2px 6px; align-self: stretch; }
+  .hm-chip {
+    background: #fff; border: 1px solid var(--teal2); color: var(--teal); cursor: pointer;
+    font-family: var(--font-body); font-size: 0.78rem; font-weight: 600; padding: 8px 14px; border-radius: 20px;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .hm-chip:hover { background: var(--teal); color: #fff; transform: translateY(-1px); }
+  .hm-chip.solid { background: linear-gradient(150deg, var(--teal2), var(--teal)); color: #fff; border-color: transparent; }
+  .hm-chip.solid:hover { filter: brightness(1.06); }
+
+  .hm-inline { align-self: stretch; display: flex; gap: 8px; padding: 0 2px 6px; }
+  .hm-inline input { flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-family: var(--font-body); font-size: 0.86rem; color: var(--ink); }
+  .hm-inline input:focus { outline: none; border-color: var(--teal2); box-shadow: 0 0 0 3px rgba(52,142,130,0.14); }
+  .hm-inline button { border: none; background: var(--teal); color: #fff; border-radius: 8px; padding: 0 16px; font-weight: 600; font-size: 0.8rem; cursor: pointer; }
+  .hm-inline button:hover { background: var(--ink2); }
+
+  .hm-summary { align-self: stretch; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-size: 0.82rem; box-shadow: var(--shadow-sm); }
+  .hm-summary .row { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px dashed var(--border); }
+  .hm-summary .row:last-child { border-bottom: none; }
+  .hm-summary .k { color: var(--mid); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hm-summary .v { color: var(--ink2); text-align: right; font-weight: 500; }
+
+  .hm-foot { border-top: 1px solid var(--border); background: #fff; padding: 10px 12px; }
+  .hm-inputrow { display: flex; gap: 8px; align-items: flex-end; }
+  .hm-inputrow textarea {
+    flex: 1; resize: none; border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px;
+    font-family: var(--font-body); font-size: 0.87rem; color: var(--ink); max-height: 90px; line-height: 1.4;
+  }
+  .hm-inputrow textarea:focus { outline: none; border-color: var(--teal2); box-shadow: 0 0 0 3px rgba(52,142,130,0.14); }
+  .hm-inputrow textarea:disabled { background: var(--cream); color: var(--mid); }
+  .hm-send { width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; border: none; cursor: pointer; background: linear-gradient(150deg, var(--teal2), var(--teal)); color: #fff; display: flex; align-items: center; justify-content: center; transition: transform 0.18s ease, opacity 0.18s ease; }
+  .hm-send:hover { transform: scale(1.06); }
+  .hm-send:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+  .hm-disclaimer { text-align: center; font-size: 0.64rem; color: var(--mid); margin-top: 7px; }
+
+  @media (max-width: 480px) {
+    .hm-window { right: 12px; left: 12px; width: auto; bottom: 84px; height: 70vh; max-height: calc(100vh - 100px); }
+    .hm-launcher { bottom: 18px; right: 18px; }
+    .hm-teaser { right: 18px; bottom: 90px; }
+  }
+
   /* ── RESPONSIVE ─────────────────────────────────── */
   @media (max-width: 980px) {
     nav { padding: 0 24px; }
@@ -982,5 +1100,6 @@
 </footer>
 
 <script src="app.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>
