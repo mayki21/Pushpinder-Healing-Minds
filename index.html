@@ -311,6 +311,202 @@
   .acc-body-inner p + p { margin-top: 14px; }
   .acc-body-inner strong { color: #fff; font-weight: 600; }
   .acc-body-inner em { color: var(--sky); font-style: italic; }
+
+  /* ---------- Resources / Wellness Library (light bg) ---------- */
+  #resources .res-tabs {
+    display: flex; flex-wrap: wrap; gap: 6px 26px;
+    margin: 44px 0 8px; border-bottom: 1px solid var(--border);
+  }
+  #resources .res-tab {
+    appearance: none; -webkit-appearance: none; background: transparent; border: none;
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+    color: var(--mid); cursor: pointer; padding: 12px 2px; position: relative;
+    letter-spacing: 0.01em; transition: color 0.25s ease;
+  }
+  #resources .res-tab::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+    background: var(--spectrum); border-radius: 2px;
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+  }
+  #resources .res-tab:hover { color: var(--teal); }
+  #resources .res-tab.active { color: var(--ink); }
+  #resources .res-tab.active::after { transform: scaleX(1); }
+
+  #resources .res-panel { display: none; }
+  #resources .res-panel.active { display: block; animation: resFade 0.45s ease; }
+  @keyframes resFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* accordion recoloured for the light panel */
+  #resources .accordion { margin-top: 30px; border-top: 1px solid var(--border); }
+  #resources .acc-item { border-bottom: 1px solid var(--border); }
+  #resources .acc-head { color: var(--ink); }
+  #resources .acc-head:hover { color: var(--teal); }
+  #resources .acc-num { color: var(--teal2); }
+  #resources .acc-q { color: var(--ink); }
+  #resources .acc-item.open .acc-q { color: var(--teal); }
+  #resources .acc-icon::before, #resources .acc-icon::after { background: var(--teal); }
+  #resources .acc-body-inner p { color: #38504D; }
+  #resources .acc-body-inner p:first-child { margin-top: 0; }
+  #resources .acc-body-inner strong { color: var(--ink); }
+  #resources .acc-body-inner em { color: var(--teal); }
+  #resources .acc-body-inner h4 {
+    font-family: var(--font-display); font-size: 1.06rem; font-weight: 600;
+    color: var(--ink); margin: 24px 0 6px; letter-spacing: -0.005em;
+  }
+  #resources .acc-body-inner h5 {
+    font-family: var(--font-body); font-size: 0.82rem; font-weight: 700;
+    color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; margin: 18px 0 8px;
+  }
+  #resources .acc-body-inner ul { margin: 8px 0 4px; padding-left: 20px; list-style: none; }
+  #resources .acc-body-inner li {
+    position: relative; font-size: 0.92rem; line-height: 1.8; color: #38504D; margin-bottom: 9px; padding-left: 4px;
+  }
+  #resources .acc-body-inner li::before {
+    content: ''; position: absolute; left: -14px; top: 12px; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--spectrum);
+  }
+  #resources .acc-body-inner li strong { color: var(--ink); }
+  #resources .acc-body-inner li ul { margin-top: 8px; }
+  #resources .res-lead {
+    max-width: 780px; font-size: 0.97rem; line-height: 1.85; color: #38504D; margin-top: 6px;
+  }
+
+  /* empty-state placeholder for tabs awaiting content */
+  #resources .res-empty {
+    max-width: 640px; margin-top: 30px; padding: 40px 36px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: var(--shadow-sm);
+  }
+  #resources .res-empty .res-empty-tag {
+    display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 14px;
+  }
+  #resources .res-empty .res-empty-tag::before { content: ''; width: 18px; height: 2px; background: var(--spectrum); border-radius: 2px; }
+  #resources .res-empty h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+  #resources .res-empty p { font-size: 0.95rem; line-height: 1.8; color: var(--mid); }
+  #resources .res-empty a { color: var(--teal); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--sky); }
+  #resources .res-empty a:hover { border-bottom-color: var(--teal); }
+  #resources .res-note {
+    margin-top: 44px; max-width: 760px; font-size: 0.82rem; line-height: 1.75;
+    color: var(--mid); border-left: 2px solid var(--sky); padding-left: 18px;
+  }
+
+  /* numbered "blueprint" steps + scripted lines */
+  #resources .res-steps { counter-reset: step; margin: 14px 0 6px; }
+  #resources .res-step { position: relative; padding-left: 50px; margin-bottom: 26px; }
+  #resources .res-step:last-child { margin-bottom: 4px; }
+  #resources .res-step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--spectrum); color: #fff; font-family: var(--font-display);
+    font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; justify-content: center;
+  }
+  #resources .res-step-title {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;
+    font-family: var(--font-display); font-size: 1.05rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 6px; min-height: 32px;
+  }
+  #resources .res-step-when {
+    font-family: var(--font-body); font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal);
+  }
+  #resources .res-step > p { font-size: 0.92rem; line-height: 1.8; color: #38504D; }
+  #resources .res-say {
+    margin-top: 10px; padding: 12px 16px; background: var(--white);
+    border-left: 3px solid var(--teal2); border-radius: 0 10px 10px 0;
+    font-style: italic; color: #38504D; font-size: 0.92rem; line-height: 1.7;
+  }
+  #resources .res-say-label {
+    display: block; font-family: var(--font-body); font-style: normal; font-size: 0.68rem;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 5px;
+  }
+
+  /* ---------- Sexual Response Cycle diagram ---------- */
+  #resources .src-fig {
+    margin: 28px 0 36px; padding: 30px 26px 26px; background: var(--white);
+    border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow-md);
+  }
+  #resources .src-title {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
+    color: var(--ink); text-align: center; margin-bottom: 4px; letter-spacing: -0.01em;
+  }
+  #resources .src-wheel { max-width: 660px; margin: 8px auto 0; }
+  #resources .src-wheel svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  #resources .src-node { transform-box: fill-box; transform-origin: center; }
+  #resources .src-node rect { filter: drop-shadow(0 5px 12px rgba(16,41,42,0.16)); }
+  #resources .src-node text { font-family: var(--font-body); fill: #fff; font-weight: 700; letter-spacing: 0.02em; }
+  #resources .src-center { transform-box: fill-box; transform-origin: center; }
+  #resources .src-center circle { transform-box: fill-box; transform-origin: center; animation: srcPulse 3.6s ease-in-out infinite; }
+  #resources .src-center text { font-family: var(--font-display); fill: #fff; font-weight: 600; letter-spacing: 0.04em; }
+  #resources .src-tag { font-family: var(--font-body); fill: var(--mid); font-size: 17px; font-style: italic; }
+  #resources .src-arrow { fill: none; stroke: #2E837A; stroke-width: 7; stroke-linecap: round; }
+  #resources .src-node.hot rect { stroke: var(--gold); stroke-width: 4; }
+
+  /* armed (JS present) → hidden until played */
+  #resources .src-fig.is-armed .src-node,
+  #resources .src-fig.is-armed .src-center,
+  #resources .src-fig.is-armed .src-tag,
+  #resources .src-fig.is-armed .src-detail { opacity: 0; }
+  #resources .src-fig.is-armed .src-arrow { opacity: 0; stroke-dasharray: 1; stroke-dashoffset: 1; }
+
+  /* play → run entrance animations */
+  #resources .src-fig.play .src-node { animation: srcPop 0.55s cubic-bezier(0.34,1.4,0.5,1) both; }
+  #resources .src-fig.play .src-center { animation: srcFade 0.6s ease both; }
+  #resources .src-fig.play .src-tag { animation: srcFade 0.6s ease both; }
+  #resources .src-fig.play .src-arrow { animation: srcDraw 0.55s ease forwards; }
+  #resources .src-fig.play .src-detail { animation: srcUp 0.5s ease both; }
+
+  @keyframes srcPop { from { opacity: 0; transform: scale(0.75); } to { opacity: 1; transform: none; } }
+  @keyframes srcFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes srcUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes srcDraw { from { opacity: 1; stroke-dashoffset: 1; } to { opacity: 1; stroke-dashoffset: 0; } }
+  @keyframes srcPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+  #resources .src-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; justify-content: center; margin: 18px 0 20px; }
+  #resources .src-key { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 5px 13px; border-radius: 20px; }
+  #resources .src-key-phase { background: var(--teal); color: #fff; }
+  #resources .src-key-dys { background: #F3D9D2; color: #9E4B36; }
+  #resources .src-key-tx { background: #D8EBE4; color: #1F6E5C; }
+
+  #resources .src-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 16px; }
+  #resources .src-detail {
+    background: var(--cream); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 20px; transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  #resources .src-detail.hot { border-color: var(--teal2); box-shadow: 0 10px 24px rgba(33,106,99,0.18); transform: translateY(-2px); }
+  #resources .src-detail h5 {
+    font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--ink);
+    margin: 0 0 12px; text-transform: none; letter-spacing: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;
+  }
+  #resources .src-detail h5 em {
+    font-family: var(--font-body); font-style: normal; font-size: 0.62rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); background: var(--sand); padding: 3px 8px; border-radius: 12px;
+  }
+  #resources .src-line { font-size: 0.9rem; line-height: 1.5; color: #38504D; padding: 9px 13px; border-radius: 10px; margin-bottom: 8px; border-left: 3px solid transparent; }
+  #resources .src-line:last-child { margin-bottom: 0; }
+  #resources .src-line strong { display: block; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  #resources .src-line.src-dys { background: #FBEEEA; border-left-color: #C9705A; }
+  #resources .src-line.src-dys strong { color: #9E4B36; }
+  #resources .src-line.src-tx { background: #EAF4EF; border-left-color: #4A9E86; }
+  #resources .src-line.src-tx strong { color: #1F6E5C; }
+  #resources .src-line.src-up { background: #F4EFDF; border-left-color: var(--gold); }
+  #resources .src-line.src-up strong { color: #9A7B26; }
+  #resources .src-line.src-down { background: var(--white); border-left-color: var(--sky); }
+  #resources .src-line.src-down strong { color: var(--mid); }
+  #resources .src-note { margin: 20px auto 0; max-width: 640px; font-size: 0.8rem; line-height: 1.7; color: var(--mid); text-align: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #resources .src-fig.is-armed .src-node,
+    #resources .src-fig.is-armed .src-center,
+    #resources .src-fig.is-armed .src-tag,
+    #resources .src-fig.is-armed .src-detail,
+    #resources .src-fig.is-armed .src-arrow { opacity: 1; }
+    #resources .src-fig .src-arrow { stroke-dashoffset: 0 !important; }
+    #resources .src-center circle { animation: none !important; }
+    #resources .src-fig.play *, #resources .src-fig.play { animation: none !important; }
+  }
   .heritage-note { margin-top: 40px; max-width: 900px; font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.75; border-left: 2px solid rgba(255,255,255,0.15); padding-left: 18px; }
 
   /* ── TESTIMONIALS ─────────────────────────────────── */
@@ -557,6 +753,7 @@
     <li><a href="#gender-affirming">Gender-Affirming Care</a></li>
     <li><a href="#holistic">Holistic Wellbeing</a></li>
     <li><a href="#heritage">Perspectives</a></li>
+    <li><a href="#resources">Resources</a></li>
     <li><a href="#contact" class="nav-book">Book a Session</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
@@ -567,6 +764,7 @@
   <a href="#gender-affirming" onclick="closeMenu()">Gender-Affirming Care</a>
   <a href="#holistic" onclick="closeMenu()">Holistic Wellbeing</a>
   <a href="#heritage" onclick="closeMenu()">Perspectives</a>
+  <a href="#resources" onclick="closeMenu()">Resources</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 
@@ -826,6 +1024,361 @@
   </div>
 
   <p class="heritage-note fade-in">Shared as cultural and historical context, not clinical or religious instruction. This heritage informs the affirming, non-judgmental lens of the practice — your own beliefs, background, and boundaries are always what guide the work in session.</p>
+</section>
+
+<!-- RESOURCES / WELLNESS LIBRARY -->
+<section id="resources" class="alt detail-section">
+  <div class="section-header fade-in">
+    <p class="section-eyebrow">Wellness Library</p>
+    <h2 class="section-title">Reads on sex, mind &amp; body</h2>
+    <div class="section-divider"></div>
+    <p class="section-body" style="margin-top:18px;">Plain-language notes across the three areas this practice cares about — intimacy and sexual health, mental health, and everyday well-being. Pick a topic below and tap any question to read more.</p>
+  </div>
+
+  <div class="res-tabs fade-in" role="tablist" aria-label="Resource categories">
+    <button class="res-tab" role="tab" aria-selected="false" aria-controls="tab-sexual" onclick="switchTab(this,'tab-sexual')">Sexual Health</button>
+    <button class="res-tab" role="tab" aria-selected="false" aria-controls="tab-mental" onclick="switchTab(this,'tab-mental')">Mental Health</button>
+    <button class="res-tab active" role="tab" aria-selected="true" aria-controls="tab-wellbeing" onclick="switchTab(this,'tab-wellbeing')">General Well-being</button>
+  </div>
+
+  <div class="res-panels fade-in">
+
+    <!-- Sexual Health -->
+    <div class="res-panel" id="tab-sexual" role="tabpanel">
+      <p class="res-lead">Honest, judgment-free notes on intimacy — including the conversations that feel hardest to start. Talking openly <em>before</em> a big moment is itself the deepest form of closeness.</p>
+
+      <figure class="src-fig">
+        <figcaption class="src-title">The Sexual Response Cycle</figcaption>
+        <div class="src-wheel">
+          <svg viewBox="80 188 840 712" role="img" aria-label="The five-phase sexual response cycle — Desire, Arousal/Excitement, Plateau, Orgasm, Resolution — arranged clockwise around a central hub, with related dysfunctions and treatments listed below.">
+            <defs>
+              <linearGradient id="srcPhase" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3A9488"/>
+                <stop offset="1" stop-color="#216A63"/>
+              </linearGradient>
+              <marker id="srcArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#2E837A"/>
+              </marker>
+            </defs>
+
+            <!-- clockwise arrows -->
+            <path class="src-arrow" pathLength="1" marker-end="url(#srcArrow)" style="animation-delay:.50s" d="M407,215 A300,300 0 0 1 593,215"/>
+            <path class="src-arrow" pathLength="1" marker-end="url(#srcArrow)" style="animation-delay:.65s" d="M743,324 A300,300 0 0 1 800,500"/>
+            <path class="src-arrow" pathLength="1" marker-end="url(#srcArrow)" style="animation-delay:.80s" d="M743,676 A300,300 0 0 1 593,785"/>
+            <path class="src-arrow" pathLength="1" marker-end="url(#srcArrow)" style="animation-delay:.95s" d="M407,785 A300,300 0 0 1 257,676"/>
+            <path class="src-arrow" pathLength="1" marker-end="url(#srcArrow)" style="animation-delay:1.10s" d="M200,500 A300,300 0 0 1 257,324"/>
+
+            <!-- hub -->
+            <g class="src-center" style="animation-delay:.05s">
+              <circle cx="500" cy="500" r="74"/>
+              <text x="500" y="492" text-anchor="middle" font-size="21">SEXUAL</text>
+              <text x="500" y="517" text-anchor="middle" font-size="21">CYCLE</text>
+            </g>
+
+            <!-- phase nodes -->
+            <g class="src-node" data-phase="desire" style="animation-delay:.15s">
+              <rect x="226" y="225" width="196" height="64" rx="14" fill="url(#srcPhase)"/>
+              <text x="324" y="257" text-anchor="middle" dominant-baseline="central" font-size="27">DESIRE</text>
+            </g>
+            <g class="src-node" data-phase="arousal" style="animation-delay:.30s">
+              <rect x="571" y="216" width="210" height="82" rx="14" fill="url(#srcPhase)"/>
+              <text x="676" y="245" text-anchor="middle" dominant-baseline="central" font-size="23">AROUSAL /</text>
+              <text x="676" y="271" text-anchor="middle" dominant-baseline="central" font-size="23">EXCITEMENT</text>
+            </g>
+            <text class="src-tag" x="676" y="322" text-anchor="middle" style="animation-delay:.30s">Longest phase</text>
+            <g class="src-node" data-phase="plateau" style="animation-delay:.45s">
+              <rect x="687" y="561" width="196" height="64" rx="14" fill="url(#srcPhase)"/>
+              <text x="785" y="593" text-anchor="middle" dominant-baseline="central" font-size="27">PLATEAU</text>
+            </g>
+            <g class="src-node" data-phase="orgasm" style="animation-delay:.60s">
+              <rect x="402" y="768" width="196" height="64" rx="14" fill="url(#srcPhase)"/>
+              <text x="500" y="800" text-anchor="middle" dominant-baseline="central" font-size="27">ORGASM</text>
+            </g>
+            <text class="src-tag" x="500" y="858" text-anchor="middle" style="animation-delay:.60s">Shortest phase</text>
+            <g class="src-node" data-phase="resolution" style="animation-delay:.75s">
+              <rect x="117" y="561" width="196" height="64" rx="14" fill="url(#srcPhase)"/>
+              <text x="215" y="593" text-anchor="middle" dominant-baseline="central" font-size="24">RESOLUTION</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="src-legend">
+          <span class="src-key src-key-phase">Phase</span>
+          <span class="src-key src-key-dys">Dysfunction</span>
+          <span class="src-key src-key-tx">Treatment</span>
+        </div>
+
+        <div class="src-details">
+          <div class="src-detail" data-phase="desire" style="animation-delay:1.15s">
+            <h5>Desire</h5>
+            <div class="src-line src-up"><strong>Increased &uarr;</strong>Satyriasis (&#9794;) &middot; Nymphomania (&#9792;)</div>
+            <div class="src-line src-down"><strong>Decreased &darr;</strong>Frigidity</div>
+          </div>
+          <div class="src-detail" data-phase="arousal" style="animation-delay:1.28s">
+            <h5>Arousal / Excitement <em>Longest phase</em></h5>
+            <div class="src-line src-dys"><strong>Dysfunction</strong>Erectile Dysfunction</div>
+            <div class="src-line src-tx"><strong>Treatment</strong>PDE-5 Inhibitors</div>
+          </div>
+          <div class="src-detail" data-phase="orgasm" style="animation-delay:1.41s">
+            <h5>Orgasm <em>Shortest phase</em></h5>
+            <div class="src-line src-dys"><strong>Dysfunction</strong>Premature Ejaculation (&lt; 1 min)</div>
+            <div class="src-line src-tx"><strong>Treatment</strong>SSRIs (&uarr;)</div>
+            <div class="src-line src-tx"><strong>Treatment</strong>Squeeze Therapy &mdash; Dual Sex Therapy (Patient &amp; Partner)</div>
+          </div>
+        </div>
+
+        <p class="src-note">An educational overview of the Masters &amp; Johnson sexual response cycle and conditions commonly associated with each phase. Shared for general understanding only — not a diagnosis or a substitute for individual medical advice.</p>
+      </figure>
+
+      <div class="accordion">
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+            <span class="acc-num">01</span>
+            <span class="acc-q">Easing wedding-night pressure: a conversation blueprint</span>
+            <span class="acc-icon"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-inner"><div>
+            <p>Opening up about this takes an immense amount of emotional maturity — especially in a cultural setup where we're often conditioned to hide our vulnerabilities until the wedding night. Starting this conversation now is actually the ultimate form of intimacy: it moves your relationship out of "polite fiancé mode" and into a real, protective partnership.</p>
+            <p>The goal isn't a heavy, clinical debate, but a safe space where both of your nervous systems can relax. Here's a step-by-step framework to start it naturally, minimising the risk of your partner feeling defensive or overwhelmed.</p>
+
+            <h4>The conversation blueprint</h4>
+            <div class="res-steps">
+              <div class="res-step">
+                <div class="res-step-title">Choose a low-stakes environment <span class="res-step-when">Prerequisite</span></div>
+                <p>Don't bring this up during a chaotic wedding-planning session, right after a family argument, or while driving in traffic. Pick a private, neutral space — a quiet walk, a relaxed coffee date, or a late-night phone call when you're both completely wound down.</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">Open with warmth and affirmation <span class="res-step-when">First 2 minutes</span></div>
+                <p>Start by affirming the relationship so your partner knows they aren't being rejected. Use "I" statements to own your feelings rather than making it about their expectations.</p>
+                <p class="res-say"><span class="res-say-label">What to say</span>"I'm so excited to marry you and build our life together. Because I value us so much, there's something a bit vulnerable I want to share with you so we're on the same page."</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">Normalise the anxiety <span class="res-step-when">Next 3 minutes</span></div>
+                <p>Acknowledge the cultural pressure you're both under. This removes the isolation and helps your partner see that feeling nervous is normal — not a personal failure or a lack of attraction.</p>
+                <p class="res-say"><span class="res-say-label">What to say</span>"With all the wedding chaos and the crazy expectations around the 'first night,' I've been feeling a lot of performance pressure and anxiety about the physical side of things. Society puts a lot of weight on that one night."</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">State your boundary as a team goal <span class="res-step-when">Next 5 minutes</span></div>
+                <p>Frame your boundary not as a wall keeping them out, but as a bridge to make you both comfortable. Clearly state what you need for the first few nights.</p>
+                <p class="res-say"><span class="res-say-label">What to say</span>"I really want our first physical experiences to be beautiful and stress-free. So I'd love it if we took all the pressure off penetrative sex for the first couple of nights on the honeymoon. I just want to focus on holding each other, sleeping, and getting used to being close — without a finish line."</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">Invite them into the circle <span class="res-step-when">Closing</span></div>
+                <p>Pass the microphone to them. Give them explicit permission to voice their own unspoken fears — which they very likely have.</p>
+                <p class="res-say"><span class="res-say-label">What to say</span>"How do you feel about that? Have you been feeling any of this wedding pressure too?"</p>
+              </div>
+            </div>
+
+            <h4>What to watch out for</h4>
+            <ul>
+              <li><strong>The "relief" response:</strong> in the vast majority of cases, partners are secretly holding their breath, waiting for a chance to confess the exact same fears. Your vulnerability will likely feel like a gift to them.</li>
+              <li><strong>If they get defensive:</strong> if your partner reacts with confusion or feels rejected ("Don't you find me attractive?"), don't panic — that's usually their own performance anxiety masking itself as hurt pride. Gently reassure them.</li>
+            </ul>
+            <p class="res-say"><span class="res-say-label">If they feel hurt, try</span>"I find you incredibly attractive. I just want to make sure I'm fully present and relaxed so it's amazing for both of us, rather than rushing because of a calendar date."</p>
+
+            <p>By setting this boundary now, you make sure that when you finally close the door on your wedding night, you aren't walking into a high-stakes exam — you're walking into a sanctuary you both built.</p>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+            <span class="acc-num">02</span>
+            <span class="acc-q">The quick, low-key version: how to actually say it</span>
+            <span class="acc-icon"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-inner"><div>
+            <p>If the full blueprint feels like a lot, here's the no-nonsense, realistic breakdown — how to actually have this chat without it feeling like a massive, awkward deal.</p>
+            <div class="res-steps">
+              <div class="res-step">
+                <div class="res-step-title">Pick a "zero-stress" moment</div>
+                <p>Don't bring this up in person if you're easily flustered. A late-night phone call a few weeks before the wedding is often easier — you don't have to hold eye contact.</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">Blame the wedding exhaustion</div>
+                <p>This is your easiest, most realistic shield. Everyone in India knows how brutal wedding schedules are — so use it.</p>
+                <p class="res-say"><span class="res-say-label">Say this</span>"Hey, looking at the wedding schedule, we're going to be absolutely dead tired by the time we get to the room."</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">Take the pressure off right away</div>
+                <p>Propose a "pact" so it feels like a fun team decision rather than a medical boundary.</p>
+                <p class="res-say"><span class="res-say-label">Say this</span>"Can we make a pact to just sleep and relax for the first night or two? No expectations for anything physical — let's just crash."</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">Acknowledge the nerves casually</div>
+                <p>Normalise it so neither of you feels like something is wrong.</p>
+                <p class="res-say"><span class="res-say-label">Say this</span>"Honestly, society puts so much pressure on the 'first night' that it's giving me a bit of anxiety. I'd rather we just take it slow."</p>
+              </div>
+              <div class="res-step">
+                <div class="res-step-title">Give a quick reassurance boost</div>
+                <p>Close by making sure they know you still want them — men and women both fear rejection here.</p>
+                <p class="res-say"><span class="res-say-label">Say this</span>"I'm really excited to be with you. I just want it to be fun and relaxed for both of us when the time comes."</p>
+              </div>
+            </div>
+            <p><strong>The reality check:</strong> 90% of the time, your partner will breathe a massive sigh of relief — because they were secretly terrified of the exact same thing and didn't know how to say it.</p>
+          </div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mental Health -->
+    <div class="res-panel" id="tab-mental" role="tabpanel">
+      <p class="res-lead">The big life events get the attention, but it's the small, compounding stresses of an ordinary day that quietly wear on our mental health. Naming them is the first step to carrying them more lightly.</p>
+
+      <div class="accordion">
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+            <span class="acc-num">01</span>
+            <span class="acc-q">The hidden weight of everyday stress</span>
+            <span class="acc-icon"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-inner"><div>
+            <p>Navigating day-to-day life often feels like juggling a dozen invisible balls. While major life events get a lot of attention, it's the constant, compounding <strong>micro-stressors</strong> of everyday life that most heavily impact our mental health. Recognising that these challenges are universal can ease the isolation that so often comes with feeling overwhelmed.</p>
+
+            <h4>Common day-to-day challenges</h4>
+            <ul>
+              <li><strong>Financial &amp; career pressures:</strong> beyond simply earning a living, anxiety around job security, rising costs, workplace politics, and the pressure to constantly "produce" can settle into chronic low-grade anxiety.</li>
+              <li><strong>Digital &amp; information overload:</strong> between work emails, notifications, and endless feeds, the brain rarely gets a true break — fuelling comparison fatigue, FOMO, and sensory exhaustion.</li>
+              <li><strong>The "mental load" of routine:</strong> planning meals, remembering appointments, managing chores, and coordinating schedules (cognitive labour) drains mental energy before the day is even half done.</li>
+              <li><strong>Relationship dynamics:</strong> staying connected with partners, children, aging parents, and friends takes emotional labour. Minor conflicts, mismatched expectations, or loneliness can weigh heavily.</li>
+              <li><strong>Physical deprivation:</strong> the basics — poor sleep, irregular eating, too little movement — directly alter brain chemistry, lowering resilience to stress and heightening emotional reactivity.</li>
+            </ul>
+
+            <h4>How to protect your mental health in the midst of it</h4>
+            <ul>
+              <li><strong>Set digital boundaries:</strong> keep "screen-free" times — the first 30 minutes after waking or the stretch before bed — to let your nervous system reset.</li>
+              <li><strong>Prioritise micro-rest:</strong> you don't need a vacation to recharge. Take 5-minute pauses to step away from screens, breathe deeply, or simply sit in silence.</li>
+              <li><strong>Simplify &amp; triage:</strong> when the mental load feels too heavy, give yourself permission to drop the non-essential and focus on what truly matters that day.</li>
+              <li><strong>Protect your sleep:</strong> treat it as a non-negotiable pillar of mental health, not a luxury to sacrifice when you're busy.</li>
+            </ul>
+
+            <p>Which of these daily challenges are you struggling with most right now? If any of them feel heavier than you can carry alone, that's reason enough to reach out — you can <a href="#contact">request a session</a> whenever you're ready.</p>
+          </div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- General Well-being -->
+    <div class="res-panel active" id="tab-wellbeing" role="tabpanel">
+      <p class="res-lead">Nutrition is one of the quietest levers on both mood and energy. These notes look at how the three macronutrients feed your body <em>and</em> your mind, and roughly how much of each a healthy adult needs.</p>
+
+      <div class="accordion">
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+            <span class="acc-num">01</span>
+            <span class="acc-q">Protein — fuel for body and mind</span>
+            <span class="acc-icon"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-inner"><div>
+            <p>Protein is often celebrated for its role in fitness and bodybuilding, but its impact goes far deeper. It is a foundational pillar for both your physical vitality and your mental well-being — influencing everything from how your muscles recover to how your brain regulates mood and focus.</p>
+
+            <h4>How protein powers your mental health</h4>
+            <p>Your brain relies heavily on <strong>amino acids</strong> — the microscopic building blocks that make up protein — to manufacture <em>neurotransmitters</em>, the chemical messengers that shape your thoughts, emotions, and energy levels.</p>
+            <ul>
+              <li><strong>Mood &amp; sleep (serotonin):</strong> amino acids like tryptophan are essential precursors to serotonin, which stabilises mood, promotes calm, and regulates healthy sleep.</li>
+              <li><strong>Focus, drive &amp; energy (dopamine &amp; norepinephrine):</strong> tyrosine helps synthesise dopamine and norepinephrine, which influence motivation, alertness, and concentration under pressure.</li>
+              <li><strong>Fewer "hangry" swings:</strong> protein slows the absorption of carbohydrates, keeping blood sugar stable and preventing the spikes and crashes that trigger irritability, anxiety, and brain fog.</li>
+            </ul>
+
+            <h4>How protein supports physical health</h4>
+            <ul>
+              <li><strong>Tissue repair &amp; muscle maintenance:</strong> everyday movement, stress, and exercise cause micro-tears; protein supplies the raw material to repair, rebuild, and strengthen muscle and skin.</li>
+              <li><strong>Hormones &amp; enzymes:</strong> many vital hormones (such as insulin) and thousands of enzymes that drive chemical reactions are protein-based.</li>
+              <li><strong>Immune defence:</strong> antibodies are specialised proteins that identify and neutralise invaders like bacteria and viruses.</li>
+              <li><strong>Sustained satiety:</strong> protein takes longer to digest than simple carbs, keeping you full longer and supporting a steady metabolism.</li>
+            </ul>
+
+            <h4>How much you need each day</h4>
+            <p>Nutritional guidelines set a baseline to prevent deficiency; your optimal intake depends on age, activity, and stress.</p>
+            <ul>
+              <li><strong>General baseline (RDA):</strong> <strong>0.8 g per kg</strong> of body weight (about 0.36 g per pound). A 68 kg (150 lb) adult needs roughly <strong>54–55 g</strong> a day.</li>
+              <li><strong>Active individuals:</strong> with regular training, aim for <strong>1.2–2.0 g per kg</strong> to support muscle repair.</li>
+              <li><strong>Older adults:</strong> the body processes protein less efficiently with age (anabolic resistance); <strong>1.0–1.2 g per kg</strong> helps prevent age-related muscle loss.</li>
+              <li><strong>Weight management or high stress:</strong> <strong>1.2–1.6 g per kg</strong> increases fullness and steadies energy.</li>
+            </ul>
+
+            <h4>Finding the right balance</h4>
+            <p>Your body uses protein most efficiently when it's spread across the day — aim for roughly 20–30 g per meal from plant sources (lentils, beans, chickpeas, tofu, nuts) or animal sources (eggs, fish, poultry, dairy). A consistent, moderate amount meaningfully boosts your resilience against everyday physical and mental fatigue.</p>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+            <span class="acc-num">02</span>
+            <span class="acc-q">Carbohydrates — your brain's preferred fuel</span>
+            <span class="acc-icon"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-inner"><div>
+            <p>Carbohydrates often get a bad reputation in modern diet culture, but they are the body's preferred and primary source of fuel — especially for your brain. Far from "empty calories," the right kinds keep both physical energy and mental well-being steady.</p>
+
+            <h4>How carbohydrates power your body</h4>
+            <ul>
+              <li><strong>Primary energy source:</strong> carbs break down into glucose, which fuels your muscles, heart, lungs, and every other organ.</li>
+              <li><strong>Gut health &amp; digestion:</strong> dietary fibre — a carbohydrate your body doesn't digest — feeds the beneficial bacteria in your gut. Through the gut–brain axis, a healthy microbiome supports immunity and better mental health.</li>
+              <li><strong>Sparing protein for repair:</strong> when carbs cover your immediate energy needs, protein is freed up for tissue repair and hormone production rather than being burned for fuel.</li>
+            </ul>
+
+            <h4>How carbohydrates support mental health</h4>
+            <p>Your brain consumes about <strong>20% of your body's total energy</strong> and runs almost exclusively on glucose.</p>
+            <ul>
+              <li><strong>Cognitive sharpness:</strong> a steady glucose supply keeps your brain firing; too low or erratic and you get "brain fog," poor concentration, and mental fatigue.</li>
+              <li><strong>The serotonin connection:</strong> eating carbs triggers a small insulin release that helps <em>tryptophan</em> enter the brain more easily — and tryptophan is the direct precursor to mood-regulating serotonin.</li>
+              <li><strong>Preventing mood swings — quality matters:</strong> <em>refined</em> carbs (white bread, pastries, sugary snacks) cause spikes and crashes that mimic anxiety, while <em>complex</em> carbs (whole grains, oats, legumes, sweet potatoes, vegetables) digest slowly for smooth, stable energy and mood.</li>
+            </ul>
+
+            <h4>How much you need each day</h4>
+            <ul>
+              <li><strong>Absolute minimum (RDA):</strong> <strong>130 g per day</strong> — the glucose needed to fuel the brain without breaking down muscle.</li>
+              <li><strong>Recommended range (AMDR):</strong> <strong>45–65% of daily calories</strong>. On a 2,000-calorie diet that's roughly <strong>225–325 g</strong> a day.</li>
+              <li><strong>Active individuals:</strong> aim for the higher end to replenish muscle glycogen and maintain stamina.</li>
+            </ul>
+
+            <h4>Striking the right balance</h4>
+            <p>Rather than cutting carbs out, focus on <strong>quality and fibre</strong> — swap processed grains for whole grains, beans, fruit, and vegetables — so your brain and body get steady, reliable fuel to navigate daily life with resilience.</p>
+          </div></div></div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false" onclick="toggleAcc(this)">
+            <span class="acc-num">03</span>
+            <span class="acc-q">Dietary fats — building blocks for brain and hormones</span>
+            <span class="acc-icon"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-inner"><div>
+            <p>Dietary fats play a non-negotiable role in keeping both body and mind sharp. Your brain is the fattest organ in the body — about <strong>60% fat</strong> — so the right types and amounts of fat are essential for structure, cognition, and emotional stability.</p>
+
+            <h4>Mental health &amp; cognitive function</h4>
+            <ul>
+              <li><strong>Brain structure &amp; communication:</strong> neurons are wrapped in fat-based membranes. Healthy fats keep those membranes fluid and flexible so electrical impulses and neurotransmitters travel smoothly — key for memory, learning, and quick thinking.</li>
+              <li><strong>Mood &amp; inflammation:</strong> omega-3 fatty acids (EPA and DHA, from fatty fish, walnuts, and flaxseeds) are powerfully anti-inflammatory in the brain. Chronic neuroinflammation is closely linked to anxiety and depression; healthy fats help regulate it.</li>
+            </ul>
+
+            <h4>Normal body functioning</h4>
+            <ul>
+              <li><strong>Hormone production:</strong> fats are the raw material for crucial hormones, including sex hormones (estrogen, testosterone, progesterone) and the stress hormone cortisol.</li>
+              <li><strong>Vitamin absorption:</strong> vitamins A, D, E, and K are fat-soluble — your body can't absorb them efficiently without dietary fat.</li>
+              <li><strong>Cellular integrity &amp; satiety:</strong> every cell depends on lipid membranes for protection, and fats digest slowly, triggering fullness and long-lasting steady energy.</li>
+            </ul>
+
+            <h4>How much you need each day</h4>
+            <ul>
+              <li><strong>Recommended range (AMDR):</strong> <strong>20–35% of daily calories</strong>. On a 2,000-calorie diet that's roughly <strong>44–78 g</strong> of total fat a day.</li>
+            </ul>
+
+            <h4>Quality over quantity</h4>
+            <p>Not all fats behave the same. Favour <strong>unsaturated fats</strong> and keep trans fats and heavily processed oils to a minimum.</p>
+            <ul>
+              <li><strong>Monounsaturated:</strong> olive oil, avocados, almonds, peanuts — great for heart health and steady metabolism.</li>
+              <li><strong>Polyunsaturated (omega-3 &amp; omega-6):</strong> salmon, mackerel, sardines, chia, flaxseed, walnuts — crucial for brain health and lowering inflammation.</li>
+              <li><strong>Saturated:</strong> animal products and tropical oils — fine in moderation, but shouldn't make up the bulk of your fat intake.</li>
+            </ul>
+          </div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="res-note fade-in">Shared for general education only — not a substitute for personalised medical, nutritional, or clinical advice. For guidance tailored to your health, please consult a qualified professional.</p>
 </section>
 
 <!-- TRUST / TRANSPARENCY -->

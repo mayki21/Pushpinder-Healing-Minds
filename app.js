@@ -178,6 +178,61 @@ window.addEventListener('resize', function () {
   });
 });
 
+/* ---------- Resources tabs ---------- */
+function switchTab(btn, panelId) {
+  var section = document.getElementById('resources');
+  if (!section) return;
+  section.querySelectorAll('.res-tab').forEach(function (t) {
+    var on = t === btn;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  section.querySelectorAll('.res-panel').forEach(function (p) {
+    p.classList.toggle('active', p.id === panelId);
+  });
+  // Replay the response-cycle animation whenever its tab is opened.
+  var panel = document.getElementById(panelId);
+  var fig = panel && panel.querySelector('.src-fig');
+  if (fig && fig._play) fig._play();
+}
+
+/* ---------- Sexual response cycle diagram ---------- */
+(function () {
+  var fig = document.querySelector('.src-fig');
+  if (!fig) return;
+  fig.classList.add('is-armed');
+
+  fig._play = function () {
+    fig.classList.remove('play');
+    void fig.offsetWidth; // force reflow so the animation restarts
+    fig.classList.add('play');
+  };
+
+  // Play once when the diagram scrolls into view.
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) fig._play(); });
+    }, { threshold: 0.3 });
+    io.observe(fig);
+  } else {
+    fig._play();
+  }
+
+  // Two-way highlight between a phase node and its detail card.
+  fig.querySelectorAll('.src-detail').forEach(function (card) {
+    var ph = card.getAttribute('data-phase');
+    var node = fig.querySelector('.src-node[data-phase="' + ph + '"]');
+    if (!node) return;
+    var on = function () { card.classList.add('hot'); node.classList.add('hot'); };
+    var off = function () { card.classList.remove('hot'); node.classList.remove('hot'); };
+    [card, node].forEach(function (elm) {
+      elm.addEventListener('mouseenter', on);
+      elm.addEventListener('mouseleave', off);
+    });
+    node.style.cursor = 'default';
+  });
+})();
+
 /* ---------- Fade-in on scroll ---------- */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
