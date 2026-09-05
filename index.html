@@ -198,7 +198,10 @@
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 44px; }
   .credential-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
   .credential-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 0.88rem; color: #374b49; }
-  .credential-list li::before { content: '—'; color: var(--teal); font-weight: 600; flex-shrink: 0; }
+  .credential-list li::before { content: '—'; color: var(--teal); font-weight: 600; flex-shrink: 0; line-height: 1.5; }
+  .credential-body { display: flex; flex-direction: column; }
+  .credential-label { display: block; font-weight: 600; color: var(--ink2); letter-spacing: 0.02em; }
+  .credential-detail { display: block; margin-top: 3px; color: #4a5f5d; line-height: 1.55; }
   .quote-block {
     font-family: var(--font-display); font-style: italic; font-size: 1.2rem; color: var(--ink2);
     border-left: 3px solid transparent; border-image: var(--spectrum) 1; padding-left: 22px; line-height: 1.6; margin-top: 24px;
@@ -795,7 +798,7 @@
 <!-- CRISIS BANNER -->
 <div class="crisis-banner">
   <strong>In crisis or need immediate support?</strong>
-  <span>This site does not offer emergency services. Please call the <a href="tel:9152987821">iCall Helpline: 9152987821</a> or the <a href="tel:18602662345">Vandrevala Foundation: 1860-2662-345</a>, or go to your nearest emergency room.</span>
+  <span>This site does not offer emergency services. Please call the practice at <a href="tel:+918700056840">+91 87000 56840</a>, or go to your nearest emergency room.</span>
 </div>
 
 <!-- ABOUT -->
@@ -813,11 +816,13 @@
     </div>
     <div class="fade-in">
       <ul class="credential-list">
-        <li>MBBS — [University Name, dummy]</li>
-        <li>RCI Licensed Clinical Psychologist — [License No., dummy]</li>
-        <li>Certified Sex Therapist — [Certifying Body, dummy]</li>
-        <li>Trained in WPATH Standards of Care for gender-affirming practice</li>
-        <li>Ongoing consultation &amp; continuing education in trauma-informed, kink-aware, and poly-informed care</li>
+        <li><div class="credential-body"><span class="credential-label">Medical Degree</span><span class="credential-detail">MBBS — Baba Farid University of Health Sciences, Faridkot</span></div></li>
+        <li><div class="credential-body"><span class="credential-label">Medical Registration</span><span class="credential-detail">Punjab Medical Council (PMC)</span></div></li>
+        <li><div class="credential-body"><span class="credential-label">Registration Number</span><span class="credential-detail">43696</span></div></li>
+        <li><div class="credential-body"><span class="credential-label">Clinical Experience</span><span class="credential-detail">10 Years</span></div></li>
+        <li><div class="credential-body"><span class="credential-label">Gender-Affirming Care</span><span class="credential-detail">Safe, inclusive, and evidence-based medical guidance tailored to individual identity journeys.</span></div></li>
+        <li><div class="credential-body"><span class="credential-label">Intimacy Counseling</span><span class="credential-detail">Helping individuals and couples navigate physical and emotional intimacy with clinical sensitivity.</span></div></li>
+        <li><div class="credential-body"><span class="credential-label">Holistic Well-Being</span><span class="credential-detail">Addressing the intersection of mental, physical, and relational health for comprehensive vitality.</span></div></li>
       </ul>
     </div>
   </div>
